@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3D783816B07008007D4CF0 /* ItemsViewController.m */; };
 		8BDE4C6A16B045CE002E7F4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6916B045CE002E7F4A /* UIKit.framework */; };
 		8BDE4C6C16B045CE002E7F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6B16B045CE002E7F4A /* Foundation.framework */; };
 		8BDE4C6E16B045CE002E7F4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6D16B045CE002E7F4A /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B3D783716B07008007D4CF0 /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
+		8B3D783816B07008007D4CF0 /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
 		8BDE4C6516B045CE002E7F4A /* Hospitale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hospitale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE4C6916B045CE002E7F4A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8BDE4C6B16B045CE002E7F4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,8 @@
 				8BDE4C7816B045CE002E7F4A /* AppDelegate.h */,
 				8BDE4C7916B045CE002E7F4A /* AppDelegate.m */,
 				8BDE4C8116B045CE002E7F4A /* MainStoryboard_iPhone.storyboard */,
+				8B3D783716B07008007D4CF0 /* ItemsViewController.h */,
+				8B3D783816B07008007D4CF0 /* ItemsViewController.m */,
 				8BDE4C8416B045CE002E7F4A /* MainStoryboard_iPad.storyboard */,
 				8BDE4C8716B045CE002E7F4A /* ViewController.h */,
 				8BDE4C8816B045CE002E7F4A /* ViewController.m */,
@@ -277,6 +282,7 @@
 				8BDE4C7616B045CE002E7F4A /* main.m in Sources */,
 				8BDE4C7A16B045CE002E7F4A /* AppDelegate.m in Sources */,
 				8BDE4C8916B045CE002E7F4A /* ViewController.m in Sources */,
+				8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				8BDE4CA316B045CE002E7F4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BDE4CA416B045CE002E7F4A /* Build configuration list for PBXNativeTarget "HospitaleTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				8BDE4CA616B045CE002E7F4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+@property (retain, nonatomic) NSMutableData *responseData;
+@property (nonatomic, strong) NSArray* data;
 @end
