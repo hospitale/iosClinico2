@@ -23,6 +23,8 @@
 @synthesize data = _data;
 @synthesize ErrorAlreadyDisplayed;
 @synthesize erroCount;
+@synthesize txtUsuario = _txtUsuario;
+@synthesize txtSenha = _txtSenha;
 
 - (void)viewDidLoad
 {
@@ -43,9 +45,17 @@
 }
 
 - (IBAction)btnTestClick:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://192.168.100.197/testeIos/Service1.svc/GetAnotherData"];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.txtUsuario.text, self.txtSenha.text];
+    NSData* dataJsonRequest = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [dataJsonRequest length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: dataJsonRequest];
+ 
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     if(connection) {
         self.responseData = [[NSMutableData alloc] init];
@@ -77,8 +87,8 @@
         if (erroCount <= 3) {
             
             [[challenge sender]  useCredential:[NSURLCredential
-                                                credentialWithUser:@"GRUPO_A&C\\rafael.bertholdo"
-                                                password:@"P@ssw0rd01*"
+                                                credentialWithUser:@""
+                                                password:@"teste"
                                                 persistence:NSURLCredentialPersistenceNone]
                     forAuthenticationChallenge:challenge];
         }
