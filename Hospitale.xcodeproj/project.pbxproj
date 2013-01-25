@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8836A6EA16B2B74600067D59 /* URLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8836A6E916B2B74600067D59 /* URLConnectionDelegate.m */; };
 		8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3D783816B07008007D4CF0 /* ItemsViewController.m */; };
 		8BDE4C6A16B045CE002E7F4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6916B045CE002E7F4A /* UIKit.framework */; };
 		8BDE4C6C16B045CE002E7F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6B16B045CE002E7F4A /* Foundation.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8836A6E816B2B74600067D59 /* URLConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnectionDelegate.h; sourceTree = "<group>"; };
+		8836A6E916B2B74600067D59 /* URLConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnectionDelegate.m; sourceTree = "<group>"; };
 		8B3D783716B07008007D4CF0 /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
 		8B3D783816B07008007D4CF0 /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
 		8BDE4C6516B045CE002E7F4A /* Hospitale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hospitale.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +134,8 @@
 				8BDE4C8716B045CE002E7F4A /* ViewController.h */,
 				8BDE4C8816B045CE002E7F4A /* ViewController.m */,
 				8BDE4C7016B045CE002E7F4A /* Supporting Files */,
+				8836A6E816B2B74600067D59 /* URLConnectionDelegate.h */,
+				8836A6E916B2B74600067D59 /* URLConnectionDelegate.m */,
 			);
 			path = Hospitale;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				8BDE4C7A16B045CE002E7F4A /* AppDelegate.m in Sources */,
 				8BDE4C8916B045CE002E7F4A /* ViewController.m in Sources */,
 				8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */,
+				8836A6EA16B2B74600067D59 /* URLConnectionDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

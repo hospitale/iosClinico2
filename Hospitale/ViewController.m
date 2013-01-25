@@ -11,10 +11,13 @@
 #import "ItemsViewController.h"
 #import <Foundation/NSURLConnection.h>
 #import <Foundation/NSURLAuthenticationChallenge.h>
+#import "URLConnectionDelegate.h"
 
 @interface ViewController () <NSURLConnectionDelegate,NSURLConnectionDataDelegate>
 @property BOOL ErrorAlreadyDisplayed;
 @property int erroCount;
+@property URLConnectionDelegate* connAuth;
+@property id idUsuario;
 @end
 
 @implementation ViewController
@@ -25,6 +28,8 @@
 @synthesize erroCount;
 @synthesize txtUsuario = _txtUsuario;
 @synthesize txtSenha = _txtSenha;
+@synthesize connAuth = _connAuth;
+@synthesize idUsuario = _idUsuario;
 
 - (void)viewDidLoad
 {
@@ -45,23 +50,34 @@
 }
 
 - (IBAction)btnTestClick:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    self.connAuth = [[URLConnectionDelegate alloc]initWithURL:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
     NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.txtUsuario.text, self.txtSenha.text];
-    NSData* dataJsonRequest = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+    [self.connAuth post:jsonRequest withCallBack:^(NSURLResponse * response, id data) {
+        
+        for(id key in [data allKeys]){
+            self.idUsuario = [data objectForKey:key];
+        }
+    }];
     
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [dataJsonRequest length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: dataJsonRequest];
+    
+    //NSURL *url = [NSURL URLWithString:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
+    //NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.txtUsuario.text, self.txtSenha.text];
+    //NSData* dataJsonRequest = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //[request setHTTPMethod:@"POST"];
+    //[request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    //[request setValue:[NSString stringWithFormat:@"%d", [dataJsonRequest length]] forHTTPHeaderField:@"Content-Length"];
+    //[request setHTTPBody: dataJsonRequest];
  
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    if(connection) {
-        self.responseData = [[NSMutableData alloc] init];
-    } else {
-        NSLog(@"connection failed");
-    }
+    //if(connection) {
+    //    self.responseData = [[NSMutableData alloc] init];
+    //} else {
+    //    NSLog(@"connection failed");
+    //}
 
 }
 
