@@ -15,6 +15,9 @@
 
 @implementation ItemsViewController
 @synthesize data = _data;
+@synthesize allData = _allData;
+bool inited = NO;
+int keyboardHeight;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,28 +28,56 @@
     return self;
 }
 
--(void)setup{
-    //Carrega as especialiades
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarEspecialidades"
-               withContent:@"" successBlock:^(NSData *data, id jsonData) {
-                  
-                   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                       
-                       /* process downloaded data in Concurrent Queue */
-                       self.data = jsonData;
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           
-                           /* update UI on Main Thread */
-                           [self.tableView reloadData];
-                       });
-                   });                   
-               } errorBlock:^(NSError *error) {
-                   NSLog(@"%@",error);
-               } completeBlock:^{
-                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-               }];
 
+-(void)setup{
+    
+
+    if (!inited)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        
+    }
+    if(!self.allData){
+        //Carrega as especialiades
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarEspecialidades"
+                   withContent:@"" successBlock:^(NSData *data, id jsonData) {
+                       
+                       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                           
+                           /* process downloaded data in Concurrent Queue */
+                           self.allData = jsonData;
+                           self.data = [[NSMutableArray alloc]initWithArray:self.allData];
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                               /* update UI on Main Thread */
+                               [self.tableView reloadData];
+                           });
+                       });
+                   } errorBlock:^(NSError *error) {
+                       NSLog(@"%@",error);
+                   } completeBlock:^{
+                       [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                   }];
+    }
+    inited = YES;
+}
+
+-(void)keyboardShown:(NSNotification*) notification{
+    CGRect keyboardFrame;
+    [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    CGRect tableViewFrame = self.tableView.frame;
+    keyboardHeight =keyboardFrame.size.height;
+    tableViewFrame.size.height -= keyboardHeight;
+    [self.tableView setFrame:tableViewFrame];
+}
+
+-(void)keyboardWillHide:(NSNotification*) notification{
+    CGRect tableViewFrame = self.tableView.frame;
+    tableViewFrame.size.height += keyboardHeight;
+    [self.tableView setFrame:tableViewFrame];    
+//    [self.tableView setFrame:[[UIScreen mainScreen] bounds]];
 }
 
 -(void)awakeFromNib{
@@ -90,6 +121,36 @@
     return cell;
 }
 
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //Filtra registros
+        if([searchText length] == 0){
+            [self.data removeAllObjects];
+            [self.data addObjectsFromArray: self.allData];
+        }else{
+            [self.data removeAllObjects];
+            for(int i = 0; i< [self.allData count];i++){
+                NSString* item = [[self.allData objectAtIndex: i] objectForKey:@"Valor"];
+                NSRange range = [item rangeOfString:searchText options:NSCaseInsensitiveSearch];
+                if(range.location != NSNotFound){
+                    [self.data addObject:[self.allData objectAtIndex:i]];
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tableView reloadData];
+        });
+    });
+
+    
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];	
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

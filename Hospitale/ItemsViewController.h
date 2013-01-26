@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ItemsViewController : UITableViewController
-@property (nonatomic,strong) NSArray* data;
-
+@interface ItemsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@property (nonatomic,strong) NSMutableArray* data;
+@property (nonatomic,strong) NSArray* allData;
 @end
