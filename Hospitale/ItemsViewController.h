@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ItemsViewController : UITableViewController
-@property (nonatomic,weak) NSArray* data;
+@property (nonatomic,strong) NSArray* data;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ItemsViewController.h"
+#import "AeCURLConnection.h"
 
 @interface ItemsViewController ()
 
@@ -24,10 +25,38 @@
     return self;
 }
 
+-(void)setup{
+    //Carrega as especialiades
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarEspecialidades"
+               withContent:@"" successBlock:^(NSData *data, id jsonData) {
+                  
+                   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                       
+                       /* process downloaded data in Concurrent Queue */
+                       self.data = jsonData;
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           
+                           /* update UI on Main Thread */
+                           [self.tableView reloadData];
+                       });
+                   });                   
+               } errorBlock:^(NSError *error) {
+                   NSLog(@"%@",error);
+               } completeBlock:^{
+                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+               }];
+
+}
+
+-(void)awakeFromNib{
+    [self setup];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self setup];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -56,7 +85,7 @@
     if (!cell)
         cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"Cell"];
     
-    cell.textLabel.text = [[self.data objectAtIndex: indexPath.row] objectForKey:@"Value"];
+    cell.textLabel.text = [[self.data objectAtIndex: indexPath.row] objectForKey:@"Valor"];
     
     return cell;
 }

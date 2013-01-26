@@ -7,28 +7,17 @@
 //
 
 #import "ViewController.h"
-#import <Foundation/NSJSONSerialization.h>
 #import "ItemsViewController.h"
-#import <Foundation/NSURLConnection.h>
-#import <Foundation/NSURLAuthenticationChallenge.h>
-#import "URLConnectionDelegate.h"
+#import "AeCURLConnection.h"
 
-@interface ViewController () <NSURLConnectionDelegate,NSURLConnectionDataDelegate>
-@property BOOL ErrorAlreadyDisplayed;
-@property int erroCount;
-@property URLConnectionDelegate* connAuth;
+@interface ViewController () 
 @property id idUsuario;
 @end
 
 @implementation ViewController
 
-@synthesize responseData = _responseData;
-@synthesize data = _data;
-@synthesize ErrorAlreadyDisplayed;
-@synthesize erroCount;
 @synthesize txtUsuario = _txtUsuario;
 @synthesize txtSenha = _txtSenha;
-@synthesize connAuth = _connAuth;
 @synthesize idUsuario = _idUsuario;
 
 - (void)viewDidLoad
@@ -44,115 +33,27 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"Segue Itens"]){
-        ((ItemsViewController*)segue.destinationViewController).Data = self.data;
-    }
+//    if([segue.identifier isEqualToString:@"Segue Itens"]){
+//        ((ItemsViewController*)segue.destinationViewController).Data = self.data;
+//    }
 }
 
 - (IBAction)btnTestClick:(id)sender {
-    
-    self.connAuth = [[URLConnectionDelegate alloc]initWithURL:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
+
+    //Autentica o usuário
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.txtUsuario.text, self.txtSenha.text];
-    [self.connAuth post:jsonRequest withCallBack:^(NSURLResponse * response, id data) {
-        
-        for(id key in [data allKeys]){
-            self.idUsuario = [data objectForKey:key];
-        }
-    }];
-    
-    
-    //NSURL *url = [NSURL URLWithString:@"http://192.168.100.197/testeIos/seguranca/ControleAcesso.svc/RealizaLoginUsuario"];
-    //NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    //NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.txtUsuario.text, self.txtSenha.text];
-    //NSData* dataJsonRequest = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //[request setHTTPMethod:@"POST"];
-    //[request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    //[request setValue:[NSString stringWithFormat:@"%d", [dataJsonRequest length]] forHTTPHeaderField:@"Content-Length"];
-    //[request setHTTPBody: dataJsonRequest];
- 
-    //NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    //if(connection) {
-    //    self.responseData = [[NSMutableData alloc] init];
-    //} else {
-    //    NSLog(@"connection failed");
-    //}
+    [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/seguranca/controleacesso.svc/RealizaLoginUsuario"
+               withContent:jsonRequest successBlock:^(NSData *data, id jsonData) {
+                   self.idUsuario = jsonData;
+                   [self performSegueWithIdentifier:@"Segue Itens" sender: self];
+               } errorBlock:^(NSError *error) {
+                   NSLog(@"%@",error);
+               } completeBlock:^{
+                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+               }];
 
 }
 
--(void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
-    NSLog(@"%d",[challenge previousFailureCount]);
-    if([[[challenge protectionSpace] authenticationMethod] isEqual:NSURLAuthenticationMethodNTLM])
-    {
-        if([challenge previousFailureCount]>=1 && !ErrorAlreadyDisplayed)
-        {
-            erroCount++;
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Incorrect Credentials"
-                                                              message:@"You got your user/password wrong."
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"I'll try again."
-                                                    otherButtonTitles:nil];
-            
-            [message show];
-//            [textBoxPassword becomeFirstResponder];
-            ErrorAlreadyDisplayed=YES;
-            erroCount++;
-            [[challenge sender] cancelAuthenticationChallenge:challenge];
-        }
-        if (erroCount <= 3) {
-            
-            [[challenge sender]  useCredential:[NSURLCredential
-                                                credentialWithUser:@""
-                                                password:@"teste"
-                                                persistence:NSURLCredentialPersistenceNone]
-                    forAuthenticationChallenge:challenge];
-        }
-        else {
-            [[challenge sender] cancelAuthenticationChallenge:challenge];
-        }
-    }
-}
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [self.responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.responseData appendData:data];
-    
-    NSString* stringData = [[NSString alloc]initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"%@",stringData);
-    
-    id jsonObjects = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
-    NSArray *keys = [jsonObjects allKeys];
-    
-    // values in foreach loop
-    for (NSString *key in keys) {
-        self.data = [jsonObjects objectForKey:key];
-        
-        [self performSegueWithIdentifier:@"Segue Itens" sender: self];
-        break;
-        /*
-        for(id arrayItem in item)
-        {
-            NSLog(@"Id: %@ is %@",[arrayItem objectForKey:@"Key"], [arrayItem objectForKey:@"Value"]);
-        }
-         */
-     }
- 
-}
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"connection error");
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"connection success");
-}
 
 @end
