@@ -1,23 +1,20 @@
 //
-//  ItemsViewController.m
+//  PacientesInternadosViewController.m
 //  Hospitale
 //
-//  Created by Developer on 1/23/13.
+//  Created by Rafael on 1/29/13.
 //  Copyright (c) 2013 AeC. All rights reserved.
 //
 
-#import "ItemsViewController.h"
+#import "PacientesInternadosViewController.h"
 #import "AeCURLConnection.h"
+#import "PacienteTvc.h"
 
-@interface ItemsViewController ()
-
+@interface PacientesInternadosViewController ()
+@property (nonatomic,strong) NSArray* dados;
 @end
 
-@implementation ItemsViewController
-@synthesize data = _data;
-@synthesize allData = _allData;
-bool inited = NO;
-int keyboardHeight;
+@implementation PacientesInternadosViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,27 +25,17 @@ int keyboardHeight;
     return self;
 }
 
-
 -(void)setup{
-    
-
-    if (!inited)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        
-    }
-    if(!self.allData){
+    if(!self.dados){
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarEspecialidades"
+        [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados"
                    withContent:@"" successBlock:^(NSData *data, id jsonData) {
                        
                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                            
                            /* process downloaded data in Concurrent Queue */
-                           self.allData = jsonData;
-                           self.data = [[NSMutableArray alloc]initWithArray:self.allData];
+                           self.dados = jsonData;
                            dispatch_async(dispatch_get_main_queue(), ^{
                                
                                /* update UI on Main Thread */
@@ -61,23 +48,7 @@ int keyboardHeight;
                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                    }];
     }
-    inited = YES;
-}
 
--(void)keyboardShown:(NSNotification*) notification{
-    CGRect keyboardFrame;
-    [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    CGRect tableViewFrame = self.tableView.frame;
-    keyboardHeight =keyboardFrame.size.height;
-    tableViewFrame.size.height -= keyboardHeight;
-    [self.tableView setFrame:tableViewFrame];
-}
-
--(void)keyboardWillHide:(NSNotification*) notification{
-    CGRect tableViewFrame = self.tableView.frame;
-    tableViewFrame.size.height += keyboardHeight;
-    [self.tableView setFrame:tableViewFrame];    
-//    [self.tableView setFrame:[[UIScreen mainScreen] bounds]];
 }
 
 -(void)awakeFromNib{
@@ -89,7 +60,7 @@ int keyboardHeight;
 {
     [super viewDidLoad];
     [self setup];
-    // Uncomment the following line to preserve selection between presentations.
+     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -107,51 +78,28 @@ int keyboardHeight;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.data count];
+    return [self.dados count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"Paciente";
+    PacienteTvc *cell = (PacienteTvc*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
-        cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"Cell"];
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PacienteTvc" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
     
-    cell.textLabel.text = [[self.data objectAtIndex: indexPath.row] objectForKey:@"Valor"];
+    id item = [self.dados objectAtIndex: indexPath.row];
+    cell.lblPaciente.text = [item objectForKey:@"NomePaciente"];
+    cell.lblMedico.text = [item objectForKey:@"NomeMedico"];
+    cell.lblDiagnostico.text = [item objectForKey:@"Diagnostico"];
+    [cell.lblDiagnostico sizeToFit];
     
     return cell;
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //Filtra registros
-        if([searchText length] == 0){
-            [self.data removeAllObjects];
-            [self.data addObjectsFromArray: self.allData];
-        }else{
-            [self.data removeAllObjects];
-            for(int i = 0; i< [self.allData count];i++){
-                NSString* item = [[self.allData objectAtIndex: i] objectForKey:@"Valor"];
-                NSRange range = [item rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                if(range.location != NSNotFound){
-                    [self.data addObject:[self.allData objectAtIndex:i]];
-                }
-            }
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.tableView reloadData];
-        });
-    });
-
-    
-}
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];	
-}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -195,7 +143,13 @@ int keyboardHeight;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"Pacientes Internados" sender:self];
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
 @end

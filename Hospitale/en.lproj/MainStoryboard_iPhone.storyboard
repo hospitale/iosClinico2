@@ -108,10 +108,43 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ta5-Kg-B8q"/>
+                    <connections>
+                        <segue destination="BpX-5Y-CJi" kind="push" identifier="Pacientes Internados" id="gPl-Yz-mr7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xil-Ji-FDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="898" y="-71"/>
+        </scene>
+        <!--Pacientes Internados View Controller-->
+        <scene sceneID="coa-9g-WsP">
+            <objects>
+                <tableViewController id="BpX-5Y-CJi" customClass="PacientesInternadosViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" id="PdC-GA-x44">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="123" id="kIc-ry-ZsT">
+                                <rect key="frame" x="0.0" y="22" width="320" height="123"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BpX-5Y-CJi" id="rCz-sD-Nzx"/>
+                            <outlet property="delegate" destination="BpX-5Y-CJi" id="G7e-hS-UMv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gEp-aj-luL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tVH-6W-7GQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1346" y="-71"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TO3-KB-8RR">
@@ -132,6 +165,25 @@
             <point key="canvasLocation" x="67" y="-71"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ItemsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemsViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PacientesInternadosViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PacientesInternadosViewController.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTestClick:"/>
+                <relationship kind="outlet" name="txtSenha" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtUsuario" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
