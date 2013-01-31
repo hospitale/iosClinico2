@@ -12,6 +12,8 @@
 		4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCB16B8060C004FDB62 /* PacienteTvc.m */; };
 		4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */; };
 		8836A6EA16B2B74600067D59 /* AeCURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8836A6E916B2B74600067D59 /* AeCURLConnection.m */; };
+		88A6E86916BAA96F00A31E7E /* FiltroPacientesInternadosController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */; };
+		88A6E86D16BAABAA00A31E7E /* FiltroPacientesInterdados.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */; };
 		8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3D783816B07008007D4CF0 /* ItemsViewController.m */; };
 		8BDE4C6A16B045CE002E7F4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6916B045CE002E7F4A /* UIKit.framework */; };
 		8BDE4C6C16B045CE002E7F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6B16B045CE002E7F4A /* Foundation.framework */; };
@@ -51,6 +53,10 @@
 		4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacientesInternadosViewController.m; sourceTree = "<group>"; };
 		8836A6E816B2B74600067D59 /* AeCURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AeCURLConnection.h; sourceTree = "<group>"; };
 		8836A6E916B2B74600067D59 /* AeCURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AeCURLConnection.m; sourceTree = "<group>"; };
+		88A6E86716BAA96F00A31E7E /* FiltroPacientesInternadosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltroPacientesInternadosController.h; sourceTree = "<group>"; };
+		88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltroPacientesInternadosController.m; sourceTree = "<group>"; };
+		88A6E86B16BAABAA00A31E7E /* FiltroPacientesInterdados.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltroPacientesInterdados.h; sourceTree = "<group>"; };
+		88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltroPacientesInterdados.m; sourceTree = "<group>"; };
 		8B3D783716B07008007D4CF0 /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
 		8B3D783816B07008007D4CF0 /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
 		8BDE4C6516B045CE002E7F4A /* Hospitale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hospitale.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,8 +143,19 @@
 				4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */,
 				4A177F1C16B9E04C001D8572 /* LoginController.h */,
 				4A177F1D16B9E04C001D8572 /* LoginController.m */,
+				88A6E86716BAA96F00A31E7E /* FiltroPacientesInternadosController.h */,
+				88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		88A6E86A16BAAB8000A31E7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88A6E86B16BAABAA00A31E7E /* FiltroPacientesInterdados.h */,
+				88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		8BDE4C5A16B045CE002E7F4A = {
@@ -174,6 +191,7 @@
 		8BDE4C6F16B045CE002E7F4A /* Hospitale */ = {
 			isa = PBXGroup;
 			children = (
+				88A6E86A16BAAB8000A31E7E /* Model */,
 				4A07530516BA02A100D8DFB7 /* Util */,
 				4A07530416BA026000D8DFB7 /* CustomControls */,
 				4A07530316BA021700D8DFB7 /* Bootstrap */,
@@ -337,6 +355,8 @@
 				4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */,
 				4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */,
 				4A177F1E16B9E04C001D8572 /* LoginController.m in Sources */,
+				88A6E86916BAA96F00A31E7E /* FiltroPacientesInternadosController.m in Sources */,
+				88A6E86D16BAABAA00A31E7E /* FiltroPacientesInterdados.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

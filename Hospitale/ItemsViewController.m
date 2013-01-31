@@ -8,6 +8,7 @@
 
 #import "ItemsViewController.h"
 #import "AeCURLConnection.h"
+#import "FiltroPacientesInternadosController.h"
 
 @interface ItemsViewController ()
 
@@ -195,7 +196,16 @@ int keyboardHeight;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"Pacientes Internados" sender:self];
+    UINavigationController* navController = self.navigationController;
+    NSUInteger arraySize = [navController.viewControllers count];
+    
+    FiltroPacientesInternadosController* prevController = (FiltroPacientesInternadosController*)[navController.viewControllers objectAtIndex:arraySize-2];
+    
+    NSDictionary* item = [self.data objectAtIndex:indexPath.row];
+    prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
+    prevController.filtroPacientesInternados.codigoEspecialidade = [item objectForKey:@"Id"];
+        
+    [navController popViewControllerAnimated:TRUE];
 }
 
 @end

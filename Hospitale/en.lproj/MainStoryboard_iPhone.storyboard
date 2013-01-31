@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XOR-Ja-1JJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XOR-Ja-1JJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Autenticação-->
@@ -30,12 +30,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Autenticação" id="f4I-Ch-bZF"/>
                     <connections>
-                        <segue destination="L1W-K0-2H9" kind="push" identifier="Segue Itens" id="AOL-TE-8HF"/>
+                        <segue destination="7yv-eY-cji" kind="push" identifier="Segue Itens" id="0BS-dh-nZf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DY-Rr-ARA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451" y="-68"/>
+            <point key="canvasLocation" x="-29" y="-92"/>
         </scene>
         <!--Items View Controller-->
         <scene sceneID="Jbx-sV-PxD">
@@ -70,13 +70,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ta5-Kg-B8q"/>
-                    <connections>
-                        <segue destination="BpX-5Y-CJi" kind="push" identifier="Pacientes Internados" id="gPl-Yz-mr7"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xil-Ji-FDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="866" y="-71"/>
+            <point key="canvasLocation" x="950" y="-687"/>
         </scene>
         <!--Pacientes Internados View Controller-->
         <scene sceneID="coa-9g-WsP">
@@ -106,7 +103,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVH-6W-7GQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1314" y="-71"/>
+            <point key="canvasLocation" x="950" y="737"/>
+        </scene>
+        <!--Filtro Pacientes Internados Controller - Filtro-->
+        <scene sceneID="QNY-r6-9ER">
+            <objects>
+                <tableViewController id="7yv-eY-cji" customClass="FiltroPacientesInternadosController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DQK-QO-sHl">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="PI7-qY-a0A" detailTextLabel="Ei5-ty-j7g" style="IBUITableViewCellStyleValue1" id="YJs-F2-eul" customClass="fil">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI7-qY-a0A">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ei5-ty-j7g">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7yv-eY-cji" id="6Vb-KO-8zP"/>
+                            <outlet property="delegate" destination="7yv-eY-cji" id="ya2-4K-KIP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Filtro" id="q0y-qp-ygI"/>
+                    <connections>
+                        <segue destination="L1W-K0-2H9" kind="push" identifier="Lista Especialidades" id="Dk8-fd-2wE"/>
+                        <segue destination="BpX-5Y-CJi" kind="push" identifier="Pacientes Internados" id="fXM-kU-B4a"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Owl-pA-4ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395" y="-103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TO3-KB-8RR">
@@ -124,20 +167,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqo-wW-wey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67" y="-71"/>
+            <point key="canvasLocation" x="-413" y="-95"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ItemsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemsViewController.h"/>
-        </class>
-        <class className="LoginController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginController.h"/>
-        </class>
-        <class className="PacientesInternadosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PacientesInternadosViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
