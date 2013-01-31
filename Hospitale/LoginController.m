@@ -59,13 +59,15 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, tableView.frame.size.width - 20, 40) ];
-    
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 40) ];
+    footerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth| UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
     UIButton *buttonLogin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonLogin.frame = footerView.frame;
+    buttonLogin.frame = CGRectMake(footerView.frame.origin.x +10, footerView.frame.origin.y+10, footerView.bounds.size.width - 20, footerView.frame.size.height);
+
     [buttonLogin setTitle:@"Login" forState:UIControlStateNormal];
     [buttonLogin addTarget:self action:@selector(btnLogin_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     self.buttonLogin = buttonLogin;
+    buttonLogin.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
     [footerView addSubview:buttonLogin];
     
     return footerView;
