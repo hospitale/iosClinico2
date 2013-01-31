@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A177F1E16B9E04C001D8572 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A177F1D16B9E04C001D8572 /* LoginController.m */; };
 		4A676BC816B80418004FDB62 /* PacienteTvc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A676BC716B80418004FDB62 /* PacienteTvc.xib */; };
 		4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCB16B8060C004FDB62 /* PacienteTvc.m */; };
 		4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */; };
@@ -23,7 +24,6 @@
 		8BDE4C8016B045CE002E7F4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BDE4C7F16B045CE002E7F4A /* Default-568h@2x.png */; };
 		8BDE4C8316B045CE002E7F4A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDE4C8116B045CE002E7F4A /* MainStoryboard_iPhone.storyboard */; };
 		8BDE4C8616B045CE002E7F4A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDE4C8416B045CE002E7F4A /* MainStoryboard_iPad.storyboard */; };
-		8BDE4C8916B045CE002E7F4A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE4C8816B045CE002E7F4A /* ViewController.m */; };
 		8BDE4C9116B045CE002E7F4A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C9016B045CE002E7F4A /* SenTestingKit.framework */; };
 		8BDE4C9216B045CE002E7F4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6916B045CE002E7F4A /* UIKit.framework */; };
 		8BDE4C9316B045CE002E7F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6B16B045CE002E7F4A /* Foundation.framework */; };
@@ -42,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A177F1C16B9E04C001D8572 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		4A177F1D16B9E04C001D8572 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		4A676BC716B80418004FDB62 /* PacienteTvc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PacienteTvc.xib; sourceTree = "<group>"; };
 		4A676BCA16B8060C004FDB62 /* PacienteTvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacienteTvc.h; sourceTree = "<group>"; };
 		4A676BCB16B8060C004FDB62 /* PacienteTvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacienteTvc.m; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		8BDE4C7F16B045CE002E7F4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8BDE4C8216B045CE002E7F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8BDE4C8516B045CE002E7F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		8BDE4C8716B045CE002E7F4A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8BDE4C8816B045CE002E7F4A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8BDE4C8F16B045CE002E7F4A /* HospitaleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitaleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE4C9016B045CE002E7F4A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8BDE4C9816B045CE002E7F4A /* HospitaleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HospitaleTests-Info.plist"; sourceTree = "<group>"; };
@@ -100,6 +100,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A07530316BA021700D8DFB7 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				8BDE4C7816B045CE002E7F4A /* AppDelegate.h */,
+				8BDE4C7916B045CE002E7F4A /* AppDelegate.m */,
+			);
+			name = Bootstrap;
+			sourceTree = "<group>";
+		};
+		4A07530416BA026000D8DFB7 /* CustomControls */ = {
+			isa = PBXGroup;
+			children = (
+				4A676BC716B80418004FDB62 /* PacienteTvc.xib */,
+				4A676BCA16B8060C004FDB62 /* PacienteTvc.h */,
+				4A676BCB16B8060C004FDB62 /* PacienteTvc.m */,
+			);
+			name = CustomControls;
+			sourceTree = "<group>";
+		};
+		4A07530516BA02A100D8DFB7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8836A6E816B2B74600067D59 /* AeCURLConnection.h */,
+				8836A6E916B2B74600067D59 /* AeCURLConnection.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		4A177F1A16B9E02C001D8572 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B3D783716B07008007D4CF0 /* ItemsViewController.h */,
+				8B3D783816B07008007D4CF0 /* ItemsViewController.m */,
+				4A676BCD16B8066E004FDB62 /* PacientesInternadosViewController.h */,
+				4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */,
+				4A177F1C16B9E04C001D8572 /* LoginController.h */,
+				4A177F1D16B9E04C001D8572 /* LoginController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		8BDE4C5A16B045CE002E7F4A = {
 			isa = PBXGroup;
 			children = (
@@ -133,22 +174,13 @@
 		8BDE4C6F16B045CE002E7F4A /* Hospitale */ = {
 			isa = PBXGroup;
 			children = (
-				8BDE4C7816B045CE002E7F4A /* AppDelegate.h */,
-				8BDE4C7916B045CE002E7F4A /* AppDelegate.m */,
+				4A07530516BA02A100D8DFB7 /* Util */,
+				4A07530416BA026000D8DFB7 /* CustomControls */,
+				4A07530316BA021700D8DFB7 /* Bootstrap */,
+				4A177F1A16B9E02C001D8572 /* Controllers */,
 				8BDE4C8116B045CE002E7F4A /* MainStoryboard_iPhone.storyboard */,
-				8B3D783716B07008007D4CF0 /* ItemsViewController.h */,
-				8B3D783816B07008007D4CF0 /* ItemsViewController.m */,
 				8BDE4C8416B045CE002E7F4A /* MainStoryboard_iPad.storyboard */,
-				8BDE4C8716B045CE002E7F4A /* ViewController.h */,
-				8BDE4C8816B045CE002E7F4A /* ViewController.m */,
 				8BDE4C7016B045CE002E7F4A /* Supporting Files */,
-				8836A6E816B2B74600067D59 /* AeCURLConnection.h */,
-				8836A6E916B2B74600067D59 /* AeCURLConnection.m */,
-				4A676BC716B80418004FDB62 /* PacienteTvc.xib */,
-				4A676BCA16B8060C004FDB62 /* PacienteTvc.h */,
-				4A676BCB16B8060C004FDB62 /* PacienteTvc.m */,
-				4A676BCD16B8066E004FDB62 /* PacientesInternadosViewController.h */,
-				4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */,
 			);
 			path = Hospitale;
 			sourceTree = "<group>";
@@ -300,11 +332,11 @@
 			files = (
 				8BDE4C7616B045CE002E7F4A /* main.m in Sources */,
 				8BDE4C7A16B045CE002E7F4A /* AppDelegate.m in Sources */,
-				8BDE4C8916B045CE002E7F4A /* ViewController.m in Sources */,
 				8B3D783916B07008007D4CF0 /* ItemsViewController.m in Sources */,
 				8836A6EA16B2B74600067D59 /* AeCURLConnection.m in Sources */,
 				4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */,
 				4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */,
+				4A177F1E16B9E04C001D8572 /* LoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
