@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FiltroPacientesInterdados.h"
 @interface PacientesInternadosViewController : UITableViewController
-
+@property (nonatomic,weak) FiltroPacientesInterdados* filtro;
 @end

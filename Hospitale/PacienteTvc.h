@@ -10,7 +10,7 @@
 
 @interface PacienteTvc: UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblPaciente;
-@property (weak, nonatomic) IBOutlet UILabel *lblMedico;
-@property (weak, nonatomic) IBOutlet UILabel *lblDiagnostico;
+@property (weak, nonatomic) IBOutlet UILabel *lblAtendimento;
+@property (weak, nonatomic) IBOutlet UILabel *lblEndereco;
 
 @end

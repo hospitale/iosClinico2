@@ -203,7 +203,7 @@ int keyboardHeight;
     
     NSDictionary* item = [self.data objectAtIndex:indexPath.row];
     prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
-    prevController.filtroPacientesInternados.codigoEspecialidade = [item objectForKey:@"Id"];
+    prevController.filtroPacientesInternados.codigoEspecialidade = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
         
     [navController popViewControllerAnimated:TRUE];
 }

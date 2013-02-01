@@ -15,6 +15,8 @@
 @end
 
 @implementation PacientesInternadosViewController
+@synthesize filtro = _filtro;
+BOOL loaded = NO;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,18 +28,33 @@
 }
 
 -(void)setup{
-    if(!self.dados){
+    if(!loaded){
+//        loaded = YES;
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados"
-                   withContent:@"" successBlock:^(NSData *data, id jsonData) {
+        NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
+        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\"}", self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1];
+        NSString* url = @"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
+//        NSString* url = @"http://192.168.100.197/testeios/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
+        
+        [AeCURLConnection post:url withContent:content successBlock:^(NSData *data, id jsonData) {
                        
+                       //NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] );
                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                            
                            /* process downloaded data in Concurrent Queue */
                            self.dados = jsonData;
                            dispatch_async(dispatch_get_main_queue(), ^{
-                               
+                               if([self.dados count] == 0)
+                               {
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atenção"
+                                                                                   message:@"Nenhum registro encontrado com os filtros informados."
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"OK"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               }
                                /* update UI on Main Thread */
                                [self.tableView reloadData];
                            });
@@ -53,13 +70,17 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    [self setup];
+    //[self setup];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setup];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setup];
+    //[self setup];
      // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -74,11 +95,27 @@
 }
 
 #pragma mark - Table view data source
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    int qtd = [self.dados count];
+    return qtd;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.dados count];
+    NSNumber* qtd = [[self.dados objectAtIndex:section] objectForKey:@"Quantidade"];
+    return [qtd integerValue];
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSString* title = [[self.dados objectAtIndex:section] objectForKey:@"NomeEspecialidade"];
+    if([title isEqualToString:@""])
+        title = @"Sem Especialidade";
+    return title;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,11 +128,13 @@
         cell = [nib objectAtIndex:0];
     }
     
-    id item = [self.dados objectAtIndex: indexPath.row];
+    NSMutableDictionary* grupo = [self.dados objectAtIndex: indexPath.section];
+    NSMutableDictionary* item = [[grupo objectForKey:@"PacientesInternados"] objectAtIndex:indexPath.row];
     cell.lblPaciente.text = [item objectForKey:@"NomePaciente"];
-    cell.lblMedico.text = [item objectForKey:@"NomeMedico"];
-    cell.lblDiagnostico.text = [item objectForKey:@"Diagnostico"];
-    [cell.lblDiagnostico sizeToFit];
+    cell.lblAtendimento.text = [item objectForKey:@"IdAtendimento"];
+    cell.lblEndereco.text = [NSString stringWithFormat:@"%@ - %@",[item objectForKey:@"NomeUnidadeOrganizacional"],[item objectForKey:@"NumeroLeito"]];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

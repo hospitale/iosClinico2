@@ -11,6 +11,9 @@
 		4A676BC816B80418004FDB62 /* PacienteTvc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A676BC716B80418004FDB62 /* PacienteTvc.xib */; };
 		4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCB16B8060C004FDB62 /* PacienteTvc.m */; };
 		4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */; };
+		882F054D16BBE67E00FDCD2A /* TextEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 882F054C16BBE67E00FDCD2A /* TextEditCell.xib */; };
+		882F055016BBE72500FDCD2A /* TextEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F054F16BBE72500FDCD2A /* TextEditCell.m */; };
+		882F055716BC23DE00FDCD2A /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F055616BC23DE00FDCD2A /* NSArray+Categories.m */; };
 		8836A6EA16B2B74600067D59 /* AeCURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8836A6E916B2B74600067D59 /* AeCURLConnection.m */; };
 		88A6E86916BAA96F00A31E7E /* FiltroPacientesInternadosController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */; };
 		88A6E86D16BAABAA00A31E7E /* FiltroPacientesInterdados.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */; };
@@ -51,6 +54,11 @@
 		4A676BCB16B8060C004FDB62 /* PacienteTvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacienteTvc.m; sourceTree = "<group>"; };
 		4A676BCD16B8066E004FDB62 /* PacientesInternadosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacientesInternadosViewController.h; sourceTree = "<group>"; };
 		4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacientesInternadosViewController.m; sourceTree = "<group>"; };
+		882F054C16BBE67E00FDCD2A /* TextEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditCell.xib; sourceTree = "<group>"; };
+		882F054E16BBE72500FDCD2A /* TextEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditCell.h; sourceTree = "<group>"; };
+		882F054F16BBE72500FDCD2A /* TextEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditCell.m; sourceTree = "<group>"; };
+		882F055516BC23DE00FDCD2A /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
+		882F055616BC23DE00FDCD2A /* NSArray+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Categories.m"; sourceTree = "<group>"; };
 		8836A6E816B2B74600067D59 /* AeCURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AeCURLConnection.h; sourceTree = "<group>"; };
 		8836A6E916B2B74600067D59 /* AeCURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AeCURLConnection.m; sourceTree = "<group>"; };
 		88A6E86716BAA96F00A31E7E /* FiltroPacientesInternadosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltroPacientesInternadosController.h; sourceTree = "<group>"; };
@@ -121,6 +129,9 @@
 				4A676BC716B80418004FDB62 /* PacienteTvc.xib */,
 				4A676BCA16B8060C004FDB62 /* PacienteTvc.h */,
 				4A676BCB16B8060C004FDB62 /* PacienteTvc.m */,
+				882F054C16BBE67E00FDCD2A /* TextEditCell.xib */,
+				882F054E16BBE72500FDCD2A /* TextEditCell.h */,
+				882F054F16BBE72500FDCD2A /* TextEditCell.m */,
 			);
 			name = CustomControls;
 			sourceTree = "<group>";
@@ -147,6 +158,15 @@
 				88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		882F055116BC233E00FDCD2A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				882F055516BC23DE00FDCD2A /* NSArray+Categories.h */,
+				882F055616BC23DE00FDCD2A /* NSArray+Categories.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		88A6E86A16BAAB8000A31E7E /* Model */ = {
@@ -191,6 +211,7 @@
 		8BDE4C6F16B045CE002E7F4A /* Hospitale */ = {
 			isa = PBXGroup;
 			children = (
+				882F055116BC233E00FDCD2A /* Categories */,
 				88A6E86A16BAAB8000A31E7E /* Model */,
 				4A07530516BA02A100D8DFB7 /* Util */,
 				4A07530416BA026000D8DFB7 /* CustomControls */,
@@ -314,6 +335,7 @@
 				8BDE4C8316B045CE002E7F4A /* MainStoryboard_iPhone.storyboard in Resources */,
 				8BDE4C8616B045CE002E7F4A /* MainStoryboard_iPad.storyboard in Resources */,
 				4A676BC816B80418004FDB62 /* PacienteTvc.xib in Resources */,
+				882F054D16BBE67E00FDCD2A /* TextEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +379,8 @@
 				4A177F1E16B9E04C001D8572 /* LoginController.m in Sources */,
 				88A6E86916BAA96F00A31E7E /* FiltroPacientesInternadosController.m in Sources */,
 				88A6E86D16BAABAA00A31E7E /* FiltroPacientesInterdados.m in Sources */,
+				882F055016BBE72500FDCD2A /* TextEditCell.m in Sources */,
+				882F055716BC23DE00FDCD2A /* NSArray+Categories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
