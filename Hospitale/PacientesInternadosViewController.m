@@ -9,13 +9,17 @@
 #import "PacientesInternadosViewController.h"
 #import "AeCURLConnection.h"
 #import "PacienteTvc.h"
+#import "DetalhePacienteController.h"
 
 @interface PacientesInternadosViewController ()
 @property (nonatomic,strong) NSArray* dados;
+@property (nonatomic,weak) NSDictionary* pacienteSelecionado;
 @end
 
 @implementation PacientesInternadosViewController
 @synthesize filtro = _filtro;
+@synthesize pacienteSelecionado = _pacienteSelecionado;
+
 BOOL loaded = NO;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -33,7 +37,7 @@ BOOL loaded = NO;
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
-        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\"}", self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1];
+        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdPessoa\":\"%@\"}", self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1,@""];
         NSString* url = @"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
 //        NSString* url = @"http://192.168.100.197/testeios/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
         
@@ -182,13 +186,30 @@ BOOL loaded = NO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSMutableDictionary* grupo = [self.dados objectAtIndex: indexPath.section];
+    self.pacienteSelecionado = [[grupo objectForKey:@"PacientesInternados"] objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"Detalhe Paciente" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"Detalhe Paciente"]){
+        DetalhePacienteController* controller = (DetalhePacienteController*)segue.destinationViewController;
+        controller.pacienteInternado = [[PacienteInternado alloc]init];
+    
+        controller.pacienteInternado.numeroLeito = [self.pacienteSelecionado objectForKey:@"NumeroLeito"];
+        controller.pacienteInternado.idAtendimento = [self.pacienteSelecionado objectForKey:@"IdAtendimento"];
+        controller.pacienteInternado.nomePaciente = [self.pacienteSelecionado objectForKey:@"NomePaciente"];
+        controller.pacienteInternado.dataAtendimento = [self.pacienteSelecionado objectForKey:@"DataAtendimento"];
+        controller.pacienteInternado.nomeMedico = [self.pacienteSelecionado objectForKey:@"NomeMedico"];
+        controller.pacienteInternado.nomeOperadora = [self.pacienteSelecionado objectForKey:@"NomeOperadora"];
+        controller.pacienteInternado.diagnostico = [self.pacienteSelecionado objectForKey:@"Diagnostico"];
+        controller.pacienteInternado.idSolicitacao = [self.pacienteSelecionado objectForKey:@"IdSolicitacao"];
+        controller.pacienteInternado.idEspecialidade = [self.pacienteSelecionado objectForKey:@"IdEspecialidade"];
+        controller.pacienteInternado.nomeEspecialidade = [self.pacienteSelecionado objectForKey:@"NomeEspecialidade"];
+        controller.pacienteInternado.nomeUnidadeOrganizacional = [self.pacienteSelecionado objectForKey:@"NomeUnidadeOrganizacional"];
+        
+    }
 }
 
 @end

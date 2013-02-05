@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A177F1E16B9E04C001D8572 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A177F1D16B9E04C001D8572 /* LoginController.m */; };
+		4A50937216C1329300F29497 /* DetalhePacienteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A50937116C1329300F29497 /* DetalhePacienteController.m */; };
+		4A50937616C1332600F29497 /* PacienteInternado.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A50937516C1332600F29497 /* PacienteInternado.m */; };
 		4A676BC816B80418004FDB62 /* PacienteTvc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A676BC716B80418004FDB62 /* PacienteTvc.xib */; };
 		4A676BCC16B8060C004FDB62 /* PacienteTvc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCB16B8060C004FDB62 /* PacienteTvc.m */; };
 		4A676BCF16B8066E004FDB62 /* PacientesInternadosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A676BCE16B8066E004FDB62 /* PacientesInternadosViewController.m */; };
@@ -49,6 +51,10 @@
 /* Begin PBXFileReference section */
 		4A177F1C16B9E04C001D8572 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		4A177F1D16B9E04C001D8572 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		4A50937016C1329300F29497 /* DetalhePacienteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalhePacienteController.h; sourceTree = "<group>"; };
+		4A50937116C1329300F29497 /* DetalhePacienteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalhePacienteController.m; sourceTree = "<group>"; };
+		4A50937416C1332600F29497 /* PacienteInternado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacienteInternado.h; sourceTree = "<group>"; };
+		4A50937516C1332600F29497 /* PacienteInternado.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacienteInternado.m; sourceTree = "<group>"; };
 		4A676BC716B80418004FDB62 /* PacienteTvc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PacienteTvc.xib; sourceTree = "<group>"; };
 		4A676BCA16B8060C004FDB62 /* PacienteTvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacienteTvc.h; sourceTree = "<group>"; };
 		4A676BCB16B8060C004FDB62 /* PacienteTvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacienteTvc.m; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 				4A177F1D16B9E04C001D8572 /* LoginController.m */,
 				88A6E86716BAA96F00A31E7E /* FiltroPacientesInternadosController.h */,
 				88A6E86816BAA96F00A31E7E /* FiltroPacientesInternadosController.m */,
+				4A50937016C1329300F29497 /* DetalhePacienteController.h */,
+				4A50937116C1329300F29497 /* DetalhePacienteController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -174,6 +182,8 @@
 			children = (
 				88A6E86B16BAABAA00A31E7E /* FiltroPacientesInterdados.h */,
 				88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */,
+				4A50937416C1332600F29497 /* PacienteInternado.h */,
+				4A50937516C1332600F29497 /* PacienteInternado.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -381,6 +391,8 @@
 				88A6E86D16BAABAA00A31E7E /* FiltroPacientesInterdados.m in Sources */,
 				882F055016BBE72500FDCD2A /* TextEditCell.m in Sources */,
 				882F055716BC23DE00FDCD2A /* NSArray+Categories.m in Sources */,
+				4A50937216C1329300F29497 /* DetalhePacienteController.m in Sources */,
+				4A50937616C1332600F29497 /* PacienteInternado.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

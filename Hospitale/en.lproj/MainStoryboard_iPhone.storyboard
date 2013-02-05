@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XOR-Ja-1JJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XOR-Ja-1JJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Autenticação-->
@@ -89,10 +89,33 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="gEp-aj-luL"/>
+                    <connections>
+                        <segue destination="u8n-pJ-Jgs" kind="push" identifier="Detalhe Paciente" id="kV9-pJ-m6s"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVH-6W-7GQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="737"/>
+            <point key="canvasLocation" x="440" y="737"/>
+        </scene>
+        <!--Detalhe Paciente Controller-->
+        <scene sceneID="lIv-1X-Lu2">
+            <objects>
+                <tableViewController id="u8n-pJ-Jgs" customClass="DetalhePacienteController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="7To-Vu-qgM">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="u8n-pJ-Jgs" id="fiu-CK-9gH"/>
+                            <outlet property="delegate" destination="u8n-pJ-Jgs" id="HfS-8Y-Vv0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="UOp-66-vW1"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JTa-f2-G8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892" y="737"/>
         </scene>
         <!--Filtro Pacientes Internados Controller - Filtro-->
         <scene sceneID="QNY-r6-9ER">
