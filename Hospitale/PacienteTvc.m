@@ -9,6 +9,7 @@
 #import "PacienteTvc.h"
 
 @implementation PacienteTvc
+@synthesize lblAtendimento, lblEndereco, lblPaciente;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

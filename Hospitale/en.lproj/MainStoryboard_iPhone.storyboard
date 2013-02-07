@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XOR-Ja-1JJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sbc-kr-lzs">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -35,7 +35,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DY-Rr-ARA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-29" y="-92"/>
+            <point key="canvasLocation" x="-95" y="-111"/>
         </scene>
         <!--Items View Controller-->
         <scene sceneID="Jbx-sV-PxD">
@@ -153,7 +153,13 @@
                             <outlet property="delegate" destination="7yv-eY-cji" id="ya2-4K-KIP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Filtro" id="q0y-qp-ygI"/>
+                    <navigationItem key="navigationItem" title="Filtro" id="q0y-qp-ygI">
+                        <barButtonItem key="leftBarButtonItem" image="NavBarIconLauncher.png" id="XgQ-hP-GCg">
+                            <connections>
+                                <action selector="btnMenu_Pressed:" destination="7yv-eY-cji" id="WQa-Ud-RRf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="L1W-K0-2H9" kind="push" identifier="Lista Especialidades" id="Dk8-fd-2wE"/>
                         <segue destination="BpX-5Y-CJi" kind="push" identifier="Pacientes Internados" id="fXM-kU-B4a"/>
@@ -166,22 +172,61 @@
         <!--Navigation Controller-->
         <scene sceneID="TO3-KB-8RR">
             <objects>
-                <navigationController id="XOR-Ja-1JJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="middleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XOR-Ja-1JJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GA3-34-pa9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="WQe-jU-roD">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="hdj-Wb-S6f" kind="relationship" relationship="rootViewController" id="Uav-RH-Iao"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqo-wW-wey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-413" y="-95"/>
+            <point key="canvasLocation" x="-595" y="-111"/>
+        </scene>
+        <!--Left View Controller-->
+        <scene sceneID="kyp-bO-USE">
+            <objects>
+                <tableViewController storyboardIdentifier="leftViewController" id="F2F-05-cEz" customClass="LeftViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hyG-88-B88">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.19607843137254902" green="0.22352941176470587" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="F2F-05-cEz" id="PkC-XY-IVb"/>
+                            <outlet property="delegate" destination="F2F-05-cEz" id="9qw-nN-UZZ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0n-T0-KYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1460" y="652"/>
+        </scene>
+        <!--Initial View Controller-->
+        <scene sceneID="tBs-H9-IZu">
+            <objects>
+                <viewController id="sbc-kr-lzs" customClass="InitialViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H10-nh-guT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ip-ZM-nO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-278" y="1074"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NavBarIconLauncher.png" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

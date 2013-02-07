@@ -11,4 +11,5 @@
 @interface ItemsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (nonatomic,strong) NSMutableArray* data;
 @property (nonatomic,strong) NSArray* allData;
+@property (nonatomic,weak) NSString* operacao;
 @end

@@ -9,6 +9,7 @@
 #import "ItemsViewController.h"
 #import "AeCURLConnection.h"
 #import "FiltroPacientesInternadosController.h"
+#import "URLUtil.h"
 
 @interface ItemsViewController ()
 
@@ -17,6 +18,8 @@
 @implementation ItemsViewController
 @synthesize data = _data;
 @synthesize allData = _allData;
+@synthesize operacao = _operacao;
+
 bool inited = NO;
 int keyboardHeight;
 
@@ -39,29 +42,32 @@ int keyboardHeight;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         
     }
-    if(!self.allData){
-        //Carrega as especialiades
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarEspecialidades"
-                   withContent:@"" successBlock:^(NSData *data, id jsonData) {
+    
+    //Carrega as especialiades
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSString* url = [NSString stringWithFormat:@"%@clinico/enfermagem/testeClinico.svc/%@",[URLUtil getBackEndUrl],self.operacao];
+    [AeCURLConnection post:url
+               withContent:@"" successBlock:^(NSData *data, id jsonData) {
+                   
+                   //NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+                   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                        
-                       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                       /* process downloaded data in Concurrent Queue */
+                       self.allData = jsonData;
+                       self.data = [[NSMutableArray alloc]initWithArray:self.allData];
+                       dispatch_async(dispatch_get_main_queue(), ^{
                            
-                           /* process downloaded data in Concurrent Queue */
-                           self.allData = jsonData;
-                           self.data = [[NSMutableArray alloc]initWithArray:self.allData];
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               
-                               /* update UI on Main Thread */
-                               [self.tableView reloadData];
-                           });
+                           /* update UI on Main Thread */
+                           [self.tableView reloadData];
                        });
-                   } errorBlock:^(NSError *error) {
-                       NSLog(@"%@",error);
-                   } completeBlock:^{
-                       [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                   }];
-    }
+                   });
+               } errorBlock:^(NSError *error) {
+                   NSLog(@"%@",error);
+               } completeBlock:^{
+                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+               }];
+    
     inited = YES;
 }
 
@@ -77,19 +83,19 @@ int keyboardHeight;
 -(void)keyboardWillHide:(NSNotification*) notification{
     CGRect tableViewFrame = self.tableView.frame;
     tableViewFrame.size.height += keyboardHeight;
-    [self.tableView setFrame:tableViewFrame];    
-//    [self.tableView setFrame:[[UIScreen mainScreen] bounds]];
+    [self.tableView setFrame:tableViewFrame];
+    //    [self.tableView setFrame:[[UIScreen mainScreen] bounds]];
 }
 
--(void)awakeFromNib{
-    [super awakeFromNib];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self setup];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setup];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -202,9 +208,17 @@ int keyboardHeight;
     FiltroPacientesInternadosController* prevController = (FiltroPacientesInternadosController*)[navController.viewControllers objectAtIndex:arraySize-2];
     
     NSDictionary* item = [self.data objectAtIndex:indexPath.row];
-    prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
-    prevController.filtroPacientesInternados.codigoEspecialidade = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-        
+    if(self.operacao == @"CarregarEspecialidades"){
+        prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
+        prevController.filtroPacientesInternados.codigoEspecialidade = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
+    } else if(self.operacao == @"ListarUnidadesAtendidasEnfermagemBasica"){
+        prevController.filtroPacientesInternados.nomeUnidadeOrganizacional = [item objectForKey:@"Valor"];
+        prevController.filtroPacientesInternados.codigoUnidadeOrganizacional = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
+    } else if (self.operacao == @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"){
+        prevController.filtroPacientesInternados.nomeMedico = [item objectForKey:@"Valor"];
+        prevController.filtroPacientesInternados.codigoMedico = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
+    }
+
     [navController popViewControllerAnimated:TRUE];
 }
 

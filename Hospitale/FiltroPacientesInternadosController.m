@@ -10,14 +10,18 @@
 #import "FiltroPacientesInterdados.h"
 #import "TextEditCell.h"
 #import "PacientesInternadosViewController.h"
+#import "ItemsViewController.h"
+#import "IIViewDeckController.h"
 
 @interface FiltroPacientesInternadosController ()
 @property (nonatomic,strong) UIButton* btnRelatorio;
+@property (nonatomic,strong) NSString* operacao;
 @end
 
 @implementation FiltroPacientesInternadosController
 @synthesize filtroPacientesInternados = _filtroPacientesInternados;
 @synthesize btnRelatorio = _btnRelatorio;
+@synthesize operacao = _operacao;
 
 -(FiltroPacientesInterdados *)filtroPacientesInternados{
     if(!_filtroPacientesInternados)
@@ -46,6 +50,7 @@
     
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationItem setHidesBackButton:YES];
     [self.tableView reloadData];
 }
 
@@ -75,7 +80,11 @@
     // Return the number of rows in the section.
     if(section == 1)
         return 2;
-    return 1;
+    return 3;
+}
+
+- (IBAction)btnMenu_Pressed:(id)sender {
+    [self.viewDeckController toggleLeftViewAnimated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,11 +109,28 @@
         };
     }
     TextEditCell* textEditCell = (TextEditCell*)cell;
-    if(indexPath.section == 0 && indexPath.row == 0)
+    if(indexPath.section == 0)
     {
-        cell.textLabel.text = @"Especialidade";
-        cell.detailTextLabel.text = self.filtroPacientesInternados.nomeEspecialidade;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"Especialidade";
+                cell.detailTextLabel.text = self.filtroPacientesInternados.nomeEspecialidade;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                break;
+                
+            case 1:
+                cell.textLabel.text = @"Unidade";
+                cell.detailTextLabel.text = self.filtroPacientesInternados.nomeUnidadeOrganizacional;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                break;
+                
+            case 2:
+                cell.textLabel.text = @"Médico";
+                cell.detailTextLabel.text = self.filtroPacientesInternados.nomeMedico;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                break;
+        }
+        
     }else if (indexPath.section == 1){
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
@@ -174,10 +200,20 @@
 {
     if(indexPath.section == 0)
     {
-        if(indexPath.row == 0)
-        {
-            [self performSegueWithIdentifier:@"Lista Especialidades" sender:self];
+        switch (indexPath.row) {
+            case 0:
+                self.operacao = @"CarregarEspecialidades";
+                break;
+                
+            case 1:
+                self.operacao = @"ListarUnidadesAtendidasEnfermagemBasica";
+                break;
+
+            case 2:
+                self.operacao = @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto";
+                break;
         }
+        [self performSegueWithIdentifier:@"Lista Especialidades" sender:self];
     }
     else if (indexPath.section == 1)
     {
@@ -192,6 +228,8 @@
     if([segue.identifier isEqualToString:@"Pacientes Internados"])
     {
         ((PacientesInternadosViewController*)segue.destinationViewController).filtro = self.filtroPacientesInternados;
+    }else if ([segue.identifier isEqualToString:@"Lista Especialidades"]){
+        ((ItemsViewController*)segue.destinationViewController).operacao = self.operacao;
     }
 }
 

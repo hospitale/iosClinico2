@@ -10,6 +10,7 @@
 #import "AeCURLConnection.h"
 #import "PacienteTvc.h"
 #import "DetalhePacienteController.h"
+#import "URLUtil.h"
 
 @interface PacientesInternadosViewController ()
 @property (nonatomic,strong) NSArray* dados;
@@ -37,10 +38,12 @@ BOOL loaded = NO;
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
-        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdPessoa\":\"%@\"}", self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1,@""];
-        NSString* url = @"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
-//        NSString* url = @"http://192.168.100.197/testeios/clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados";
-        
+        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdPessoa\":\"%d\",\"IdUnidadeOrganizacional\":\"%d\"}",
+                             self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1,
+                             self.filtro.codigoMedico ? self.filtro.codigoMedico : -1,
+                             self.filtro.codigoUnidadeOrganizacional ? self.filtro.codigoUnidadeOrganizacional : -1];
+        NSString* url = [NSString stringWithFormat:@"%@clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados",[URLUtil getBackEndUrl]];
+   
         [AeCURLConnection post:url withContent:content successBlock:^(NSData *data, id jsonData) {
                        
                        //NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] );

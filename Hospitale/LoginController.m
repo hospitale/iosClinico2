@@ -8,6 +8,9 @@
 
 #import "LoginController.h"
 #import "AeCURLConnection.h"
+#import "URLUtil.h"
+#import "LeftViewController.h"
+#import "IIViewDeckController.h"
 
 @interface LoginController ()
 @property int idUsuario;
@@ -24,14 +27,14 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];  
     
     // we aren't editing any fields yet, it will be in edit when the user touches an edit field
     self.editing = NO;
@@ -57,6 +60,10 @@
 {
     return 2;
 }
+
+//-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return @"Autenticação";
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50) ];
@@ -167,7 +174,7 @@
     //Autentica o usuário
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString* jsonRequest = [NSString stringWithFormat:@"{\"dto\":{\"Usuario\":\"%@\",\"Senha\":\"%@\"}}", self.textUsername.text, self.textPassword.text];
-    [AeCURLConnection post:@"http://hospitaleteste.aec.com.br/hospitaleintegrationservicesteste/seguranca/controleacesso.svc/RealizaLoginUsuario"
+    [AeCURLConnection post:[NSString stringWithFormat:@"%@seguranca/controleacesso.svc/RealizaLoginUsuario",[URLUtil getBackEndUrl]]
                withContent:jsonRequest successBlock:^(NSData *data, id jsonData) {
                    if ([jsonData integerValue] != 0)
                    {
