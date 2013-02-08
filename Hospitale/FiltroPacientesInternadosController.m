@@ -33,12 +33,10 @@
     return _filtroPacientesInternados;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        
-        
         ItemFiltroPacientesInternados* especialidade = [[ItemFiltroPacientesInternados alloc] init];
         especialidade.text = @"Especialidade";
         especialidade.detailText = self.filtroPacientesInternados.nomeEspecialidade;
@@ -80,15 +78,15 @@
     return self;
 }
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.btnRelatorio = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    self.btnRelatorio.frame = CGRectMake(0, 0, 70, 40);
-//    
-//    [self.btnRelatorio setTitle:@"Relatório" forState:UIControlStateNormal];
-//    [self.btnRelatorio addTarget:self action:@selector(btnRelatorio_TouchUpInside:) forControlEvents:UIControlEventAllEvents];
-//    [self.view addSubview: self.btnRelatorio];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -107,7 +105,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return self.dataSource.count;
+    return [self.dataSource count];
 }
 
 
