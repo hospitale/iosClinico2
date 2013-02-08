@@ -26,6 +26,24 @@
 		4A8111A616C43DD9003CF0A7 /* FBBookmarkLogout.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8111A416C43DD9003CF0A7 /* FBBookmarkLogout.png */; };
 		4A8111A716C43DD9003CF0A7 /* FBBookmarkLogout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8111A516C43DD9003CF0A7 /* FBBookmarkLogout@2x.png */; };
 		4AAD209616C28D01003B2C75 /* URLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD209516C28D01003B2C75 /* URLUtil.m */; };
+		880AE56A16C58625006EF175 /* FBMenuBadgeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */; };
+		880AE56B16C58625006EF175 /* FBMenuBadgeBackground%402x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */; };
+		880AE57A16C5874B006EF175 /* FBMenuCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */; };
+		880AE57B16C5874B006EF175 /* FBMenuCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56D16C5874B006EF175 /* FBMenuCellBackground@2x.png */; };
+		880AE57C16C5874B006EF175 /* FBMenuCellBackgroundSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56E16C5874B006EF175 /* FBMenuCellBackgroundSelected.png */; };
+		880AE57D16C5874B006EF175 /* FBMenuCellBackgroundSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56F16C5874B006EF175 /* FBMenuCellBackgroundSelected@2x.png */; };
+		880AE57E16C5874B006EF175 /* FBMenuLeaveAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57016C5874B006EF175 /* FBMenuLeaveAppIcon.png */; };
+		880AE57F16C5874B006EF175 /* FBMenuLeaveAppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57116C5874B006EF175 /* FBMenuLeaveAppIcon@2x.png */; };
+		880AE58016C5874B006EF175 /* FBMenuProfileOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57216C5874B006EF175 /* FBMenuProfileOverlay.png */; };
+		880AE58116C5874B006EF175 /* FBMenuProfileOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57316C5874B006EF175 /* FBMenuProfileOverlay@2x.png */; };
+		880AE58216C5874B006EF175 /* FBMenuSectionHeaderArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57416C5874B006EF175 /* FBMenuSectionHeaderArrow.png */; };
+		880AE58316C5874B006EF175 /* FBMenuSectionHeaderArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57516C5874B006EF175 /* FBMenuSectionHeaderArrow@2x.png */; };
+		880AE58416C5874B006EF175 /* FBMenuSectionHeaderArrowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57616C5874B006EF175 /* FBMenuSectionHeaderArrowSelected.png */; };
+		880AE58516C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57716C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png */; };
+		880AE58616C5874B006EF175 /* FBMenuSectionHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57816C5874B006EF175 /* FBMenuSectionHeaderBackground.png */; };
+		880AE58716C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57916C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png */; };
+		880AE58A16C58BF1006EF175 /* ItemFiltroPacientesInternados.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */; };
+		880AE58D16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */; };
 		882F054D16BBE67E00FDCD2A /* TextEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 882F054C16BBE67E00FDCD2A /* TextEditCell.xib */; };
 		882F055016BBE72500FDCD2A /* TextEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F054F16BBE72500FDCD2A /* TextEditCell.m */; };
 		882F055716BC23DE00FDCD2A /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F055616BC23DE00FDCD2A /* NSArray+Categories.m */; };
@@ -92,6 +110,26 @@
 		4A8111A516C43DD9003CF0A7 /* FBBookmarkLogout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBBookmarkLogout@2x.png"; sourceTree = "<group>"; };
 		4AAD209416C28D01003B2C75 /* URLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLUtil.h; sourceTree = "<group>"; };
 		4AAD209516C28D01003B2C75 /* URLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLUtil.m; sourceTree = "<group>"; };
+		880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuBadgeBackground.png; sourceTree = "<group>"; };
+		880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuBadgeBackground%402x.png"; sourceTree = "<group>"; };
+		880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuCellBackground.png; sourceTree = "<group>"; };
+		880AE56D16C5874B006EF175 /* FBMenuCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuCellBackground@2x.png"; sourceTree = "<group>"; };
+		880AE56E16C5874B006EF175 /* FBMenuCellBackgroundSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuCellBackgroundSelected.png; sourceTree = "<group>"; };
+		880AE56F16C5874B006EF175 /* FBMenuCellBackgroundSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuCellBackgroundSelected@2x.png"; sourceTree = "<group>"; };
+		880AE57016C5874B006EF175 /* FBMenuLeaveAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuLeaveAppIcon.png; sourceTree = "<group>"; };
+		880AE57116C5874B006EF175 /* FBMenuLeaveAppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuLeaveAppIcon@2x.png"; sourceTree = "<group>"; };
+		880AE57216C5874B006EF175 /* FBMenuProfileOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuProfileOverlay.png; sourceTree = "<group>"; };
+		880AE57316C5874B006EF175 /* FBMenuProfileOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuProfileOverlay@2x.png"; sourceTree = "<group>"; };
+		880AE57416C5874B006EF175 /* FBMenuSectionHeaderArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuSectionHeaderArrow.png; sourceTree = "<group>"; };
+		880AE57516C5874B006EF175 /* FBMenuSectionHeaderArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuSectionHeaderArrow@2x.png"; sourceTree = "<group>"; };
+		880AE57616C5874B006EF175 /* FBMenuSectionHeaderArrowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuSectionHeaderArrowSelected.png; sourceTree = "<group>"; };
+		880AE57716C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuSectionHeaderArrowSelected@2x.png"; sourceTree = "<group>"; };
+		880AE57816C5874B006EF175 /* FBMenuSectionHeaderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuSectionHeaderBackground.png; sourceTree = "<group>"; };
+		880AE57916C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuSectionHeaderBackground@2x.png"; sourceTree = "<group>"; };
+		880AE58816C58BF1006EF175 /* ItemFiltroPacientesInternados.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemFiltroPacientesInternados.h; sourceTree = "<group>"; };
+		880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemFiltroPacientesInternados.m; sourceTree = "<group>"; };
+		880AE58B16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecaoItemFiltroPacientesInternados.h; sourceTree = "<group>"; };
+		880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecaoItemFiltroPacientesInternados.m; sourceTree = "<group>"; };
 		882F054C16BBE67E00FDCD2A /* TextEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditCell.xib; sourceTree = "<group>"; };
 		882F054E16BBE72500FDCD2A /* TextEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditCell.h; sourceTree = "<group>"; };
 		882F054F16BBE72500FDCD2A /* TextEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditCell.m; sourceTree = "<group>"; };
@@ -244,6 +282,10 @@
 				88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */,
 				4A50937416C1332600F29497 /* PacienteInternado.h */,
 				4A50937516C1332600F29497 /* PacienteInternado.m */,
+				880AE58816C58BF1006EF175 /* ItemFiltroPacientesInternados.h */,
+				880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */,
+				880AE58B16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.h */,
+				880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,6 +341,22 @@
 		8BDE4C7016B045CE002E7F4A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */,
+				880AE56D16C5874B006EF175 /* FBMenuCellBackground@2x.png */,
+				880AE56E16C5874B006EF175 /* FBMenuCellBackgroundSelected.png */,
+				880AE56F16C5874B006EF175 /* FBMenuCellBackgroundSelected@2x.png */,
+				880AE57016C5874B006EF175 /* FBMenuLeaveAppIcon.png */,
+				880AE57116C5874B006EF175 /* FBMenuLeaveAppIcon@2x.png */,
+				880AE57216C5874B006EF175 /* FBMenuProfileOverlay.png */,
+				880AE57316C5874B006EF175 /* FBMenuProfileOverlay@2x.png */,
+				880AE57416C5874B006EF175 /* FBMenuSectionHeaderArrow.png */,
+				880AE57516C5874B006EF175 /* FBMenuSectionHeaderArrow@2x.png */,
+				880AE57616C5874B006EF175 /* FBMenuSectionHeaderArrowSelected.png */,
+				880AE57716C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png */,
+				880AE57816C5874B006EF175 /* FBMenuSectionHeaderBackground.png */,
+				880AE57916C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png */,
+				880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */,
+				880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */,
 				4A8111A416C43DD9003CF0A7 /* FBBookmarkLogout.png */,
 				4A8111A516C43DD9003CF0A7 /* FBBookmarkLogout@2x.png */,
 				4A8111A016C43DCA003CF0A7 /* NavBarIconLauncher.png */,
@@ -420,6 +478,22 @@
 				4A8111A316C43DCA003CF0A7 /* NavBarIconLauncher@2x.png in Resources */,
 				4A8111A616C43DD9003CF0A7 /* FBBookmarkLogout.png in Resources */,
 				4A8111A716C43DD9003CF0A7 /* FBBookmarkLogout@2x.png in Resources */,
+				880AE56A16C58625006EF175 /* FBMenuBadgeBackground.png in Resources */,
+				880AE56B16C58625006EF175 /* FBMenuBadgeBackground%402x.png in Resources */,
+				880AE57A16C5874B006EF175 /* FBMenuCellBackground.png in Resources */,
+				880AE57B16C5874B006EF175 /* FBMenuCellBackground@2x.png in Resources */,
+				880AE57C16C5874B006EF175 /* FBMenuCellBackgroundSelected.png in Resources */,
+				880AE57D16C5874B006EF175 /* FBMenuCellBackgroundSelected@2x.png in Resources */,
+				880AE57E16C5874B006EF175 /* FBMenuLeaveAppIcon.png in Resources */,
+				880AE57F16C5874B006EF175 /* FBMenuLeaveAppIcon@2x.png in Resources */,
+				880AE58016C5874B006EF175 /* FBMenuProfileOverlay.png in Resources */,
+				880AE58116C5874B006EF175 /* FBMenuProfileOverlay@2x.png in Resources */,
+				880AE58216C5874B006EF175 /* FBMenuSectionHeaderArrow.png in Resources */,
+				880AE58316C5874B006EF175 /* FBMenuSectionHeaderArrow@2x.png in Resources */,
+				880AE58416C5874B006EF175 /* FBMenuSectionHeaderArrowSelected.png in Resources */,
+				880AE58516C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png in Resources */,
+				880AE58616C5874B006EF175 /* FBMenuSectionHeaderBackground.png in Resources */,
+				880AE58716C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +547,8 @@
 				4A81117B16C41D24003CF0A7 /* IIWrapController.m in Sources */,
 				4A81119C16C429E2003CF0A7 /* InitialViewController.m in Sources */,
 				4A81119F16C4362D003CF0A7 /* LeftViewController.m in Sources */,
+				880AE58A16C58BF1006EF175 /* ItemFiltroPacientesInternados.m in Sources */,
+				880AE58D16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

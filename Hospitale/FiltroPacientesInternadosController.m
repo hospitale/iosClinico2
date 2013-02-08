@@ -12,16 +12,20 @@
 #import "PacientesInternadosViewController.h"
 #import "ItemsViewController.h"
 #import "IIViewDeckController.h"
+#import "ItemFiltroPacientesInternados.h"
+#import "SecaoItemFiltroPacientesInternados.h"
 
 @interface FiltroPacientesInternadosController ()
 @property (nonatomic,strong) UIButton* btnRelatorio;
 @property (nonatomic,strong) NSString* operacao;
+@property (nonatomic,strong) NSArray* dataSource;
 @end
 
 @implementation FiltroPacientesInternadosController
 @synthesize filtroPacientesInternados = _filtroPacientesInternados;
 @synthesize btnRelatorio = _btnRelatorio;
 @synthesize operacao = _operacao;
+@synthesize dataSource = _dataSource;
 
 -(FiltroPacientesInterdados *)filtroPacientesInternados{
     if(!_filtroPacientesInternados)
@@ -33,7 +37,45 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        
+        
+        ItemFiltroPacientesInternados* especialidade = [[ItemFiltroPacientesInternados alloc] init];
+        especialidade.text = @"Especialidade";
+        especialidade.detailText = self.filtroPacientesInternados.nomeEspecialidade;
+        especialidade.stereotype = @"Search";
+        especialidade.indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        especialidade.operacao = @"CarregarEspecialidades";
+        
+        ItemFiltroPacientesInternados* unidade = [[ItemFiltroPacientesInternados alloc] init];
+        unidade.text = @"Unidade";
+        unidade.detailText = self.filtroPacientesInternados.nomeUnidadeOrganizacional;
+        unidade.stereotype = @"Search";
+        unidade.operacao = @"ListarUnidadesAtendidasEnfermagemBasica";
+        
+        ItemFiltroPacientesInternados* medico = [[ItemFiltroPacientesInternados alloc] init];
+        medico.text = @"Médico";
+        medico.detailText = self.filtroPacientesInternados.nomeMedico;
+        medico.stereotype = @"Search";
+        medico.operacao = @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto";
+        
+        SecaoItemFiltroPacientesInternados* primeira = [[SecaoItemFiltroPacientesInternados alloc] init];
+        primeira.itens = [NSArray arrayWithObjects:especialidade,unidade,medico, nil];
+        
+        ItemFiltroPacientesInternados* dataInicial = [[ItemFiltroPacientesInternados alloc] init];
+        dataInicial.text = @"Data Inicial";
+        dataInicial.detailText = self.filtroPacientesInternados.dataInicial;
+        dataInicial.stereotype = @"Date";
+        
+        ItemFiltroPacientesInternados* dataFinal = [[ItemFiltroPacientesInternados alloc] init];
+        dataFinal.text = @"Data Final";
+        dataFinal.detailText = self.filtroPacientesInternados.dataFinal;
+        dataFinal.stereotype = @"Date";
+        
+        SecaoItemFiltroPacientesInternados* segunda = [[SecaoItemFiltroPacientesInternados alloc] init];
+        segunda.itens = [NSArray arrayWithObjects:dataInicial,dataFinal, nil];
+        segunda.nome = @"Abertura do Atendimento";
+        
+        self.dataSource = [NSArray arrayWithObjects:primeira,segunda, nil];
     }
     return self;
 }
@@ -65,22 +107,17 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return self.dataSource.count;
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 1){
-        return @"Abertura do Atendimento";
-    }
-    return @"";
+    return ((SecaoItemFiltroPacientesInternados*)[self.dataSource objectAtIndex:section]).nome;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    if(section == 1)
-        return 2;
-    return 3;
+    return [((SecaoItemFiltroPacientesInternados*)[self.dataSource objectAtIndex:section]).itens count];
 }
 
 - (IBAction)btnMenu_Pressed:(id)sender {

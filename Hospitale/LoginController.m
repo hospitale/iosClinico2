@@ -61,9 +61,8 @@
     return 2;
 }
 
-//-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return @"Autenticação";
-//}
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{    return @"Autenticação";
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50) ];

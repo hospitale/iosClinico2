@@ -208,13 +208,13 @@ int keyboardHeight;
     FiltroPacientesInternadosController* prevController = (FiltroPacientesInternadosController*)[navController.viewControllers objectAtIndex:arraySize-2];
     
     NSDictionary* item = [self.data objectAtIndex:indexPath.row];
-    if(self.operacao == @"CarregarEspecialidades"){
+    if([self.operacao isEqualToString: @"CarregarEspecialidades"]){
         prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
         prevController.filtroPacientesInternados.codigoEspecialidade = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-    } else if(self.operacao == @"ListarUnidadesAtendidasEnfermagemBasica"){
+    } else if([self.operacao isEqualToString: @"ListarUnidadesAtendidasEnfermagemBasica"]){
         prevController.filtroPacientesInternados.nomeUnidadeOrganizacional = [item objectForKey:@"Valor"];
         prevController.filtroPacientesInternados.codigoUnidadeOrganizacional = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-    } else if (self.operacao == @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"){
+    } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
         prevController.filtroPacientesInternados.nomeMedico = [item objectForKey:@"Valor"];
         prevController.filtroPacientesInternados.codigoMedico = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
     }

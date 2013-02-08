@@ -7,12 +7,17 @@
 //
 
 #import "LeftViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "IIViewDeckController.h"
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface LeftViewController ()
 
 @end
 
 @implementation LeftViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -21,6 +26,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.tableView.frame = (CGRect) { self.tableView.frame.origin.x,
+    self.tableView.frame.origin.y,
+    320 - self.viewDeckController.leftLedgeSize,
+    self.tableView.frame.size.height };
 }
 
 - (void)viewDidLoad
@@ -62,14 +74,18 @@
     if(!cell)
         cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FBMenuCellBackground.png"]];
     
     cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FBBookmarkLogout" ofType:@"png"]];
-     
     cell.textLabel.text = @"Log Out";
-    cell.textLabel.textColor = [UIColor colorWithRed:178.0 green:186.0 blue:200.0 alpha:1];
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+    cell.textLabel.font = [UIFont fontWithName:@"ArialMT" size:17];
+    cell.textLabel.textColor = UIColorFromRGB(0xa2a9b9);
+    cell.textLabel.shadowColor = UIColorFromRGB(0x212838);
+    cell.textLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+    cell.textLabel.backgroundColor = UIColorFromRGB(0x32394b);
+    self.tableView.backgroundColor = UIColorFromRGB(0x32394b);
+ 
+
 
     return cell;
 }
