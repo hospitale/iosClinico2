@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//teste 123
+
 @interface LeftViewController : UITableViewController
 
 @end
