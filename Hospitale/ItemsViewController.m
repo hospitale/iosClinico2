@@ -12,13 +12,16 @@
 #import "URLUtil.h"
 
 @interface ItemsViewController ()
-
+@property (nonatomic,strong) NSIndexPath* selectedIndexPath;
 @end
 
 @implementation ItemsViewController
 @synthesize data = _data;
 @synthesize allData = _allData;
 @synthesize operacao = _operacao;
+@synthesize titulo = _titulo;
+@synthesize valorSelecionado = _valorSelecionado;
+@synthesize selectedIndexPath = _selectedIndexPath;
 
 bool inited = NO;
 int keyboardHeight;
@@ -60,6 +63,7 @@ int keyboardHeight;
                            
                            /* update UI on Main Thread */
                            [self.tableView reloadData];
+                                   [self performSelector:@selector(selectRowAtIndexPath:) withObject:self.selectedIndexPath afterDelay:0.0];
                        });
                    });
                } errorBlock:^(NSError *error) {
@@ -85,6 +89,30 @@ int keyboardHeight;
     tableViewFrame.size.height += keyboardHeight;
     [self.tableView setFrame:tableViewFrame];
     //    [self.tableView setFrame:[[UIScreen mainScreen] bounds]];
+}
+
+-(void)retornaParaControlardorComNome:(NSString*)nome comValor:(int) valor{
+    UINavigationController* navController = self.navigationController;
+    NSUInteger arraySize = [navController.viewControllers count];
+    
+    FiltroPacientesInternadosController* prevController = (FiltroPacientesInternadosController*)[navController.viewControllers objectAtIndex:arraySize-2];
+    
+    if([self.operacao isEqualToString: @"CarregarEspecialidades"]){
+        prevController.filtroPacientesInternados.nomeEspecialidade = nome;
+        prevController.filtroPacientesInternados.codigoEspecialidade = valor;
+    } else if([self.operacao isEqualToString: @"ListarUnidadesAtendidasEnfermagemBasica"]){
+        prevController.filtroPacientesInternados.nomeUnidadeOrganizacional = nome;
+        prevController.filtroPacientesInternados.codigoUnidadeOrganizacional = valor;
+    } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
+        prevController.filtroPacientesInternados.nomeMedico = nome;
+        prevController.filtroPacientesInternados.codigoMedico = valor;
+    }
+    
+    [navController popViewControllerAnimated:TRUE];
+
+}
+- (IBAction)limparFiltro:(id)sender {
+    [self retornaParaControlardorComNome:@"" comValor:0];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -123,10 +151,45 @@ int keyboardHeight;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
         cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"Cell"];
-    
+
     cell.textLabel.text = [[self.data objectAtIndex: indexPath.row] objectForKey:@"Valor"];
-    
+    cell.textLabel.numberOfLines =0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+
+    if ([[[self.data objectAtIndex: indexPath.row] objectForKey:@"Id"] integerValue] == self.valorSelecionado)
+    {
+        self.selectedIndexPath = [indexPath copy];
+//        NSLog(@"%@",self.selectedIndexPath);
+    }
     return cell;
+}
+
+-(int)buscaIndiceParaValorSelecionado:(NSInteger)valorSelecionado{
+    if (self.valorSelecionado)
+    {
+        for (int i = 0; i < [self.data count]; i++) {
+            id item = [self.data objectAtIndex:i];
+            
+            if ([[item objectForKey:@"Id"] integerValue] == valorSelecionado)
+            {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+- (void) selectRowAtIndexPath:(NSIndexPath *) path {
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[self buscaIndiceParaValorSelecionado:self.valorSelecionado] inSection:0] animated:TRUE scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *cellText = [[self.data objectAtIndex: indexPath.row] objectForKey:@"Valor"];
+    UIFont *cellFont = [UIFont boldSystemFontOfSize:17.0];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    
+    return labelSize.height + 20;
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -159,67 +222,14 @@ int keyboardHeight;
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];	
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UINavigationController* navController = self.navigationController;
-    NSUInteger arraySize = [navController.viewControllers count];
-    
-    FiltroPacientesInternadosController* prevController = (FiltroPacientesInternadosController*)[navController.viewControllers objectAtIndex:arraySize-2];
-    
     NSDictionary* item = [self.data objectAtIndex:indexPath.row];
-    if([self.operacao isEqualToString: @"CarregarEspecialidades"]){
-        prevController.filtroPacientesInternados.nomeEspecialidade = [item objectForKey:@"Valor"];
-        prevController.filtroPacientesInternados.codigoEspecialidade = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-    } else if([self.operacao isEqualToString: @"ListarUnidadesAtendidasEnfermagemBasica"]){
-        prevController.filtroPacientesInternados.nomeUnidadeOrganizacional = [item objectForKey:@"Valor"];
-        prevController.filtroPacientesInternados.codigoUnidadeOrganizacional = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-    } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
-        prevController.filtroPacientesInternados.nomeMedico = [item objectForKey:@"Valor"];
-        prevController.filtroPacientesInternados.codigoMedico = [(NSNumber*) [item objectForKey:@"Id"] integerValue];
-    }
-
-    [navController popViewControllerAnimated:TRUE];
+    [self retornaParaControlardorComNome:[item objectForKey:@"Valor"] comValor:[(NSNumber*) [item objectForKey:@"Id"] integerValue]];
 }
 
 @end

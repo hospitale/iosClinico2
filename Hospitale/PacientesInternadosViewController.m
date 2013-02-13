@@ -37,7 +37,7 @@ BOOL loaded = NO;
 //        loaded = YES;
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
+//        NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
         NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdPessoa\":\"%d\",\"IdUnidadeOrganizacional\":\"%d\"}",
                              self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1,
                              self.filtro.codigoMedico ? self.filtro.codigoMedico : -1,
@@ -56,11 +56,10 @@ BOOL loaded = NO;
                                {
                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atenção"
                                                                                    message:@"Nenhum registro encontrado com os filtros informados."
-                                                                                  delegate:nil
+                                                                                  delegate:self
                                                                          cancelButtonTitle:@"OK"
                                                                          otherButtonTitles:nil];
                                    [alert show];
-                                   [self.navigationController popViewControllerAnimated:YES];
                                }
                                /* update UI on Main Thread */
                                [self.tableView reloadData];
@@ -73,6 +72,11 @@ BOOL loaded = NO;
                    }];
     }
 
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)awakeFromNib{

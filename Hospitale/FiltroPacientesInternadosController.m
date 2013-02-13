@@ -125,7 +125,6 @@
     return [((TableViewDataSourceSection*)[self.dataSource objectAtIndex:section]).rows count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
@@ -142,7 +141,11 @@
             
             cell.textLabel.text = item.text;
             cell.detailTextLabel.text = item.detailText;
+            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            cell.detailTextLabel.numberOfLines = 0;
+            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell sizeToFit];
 
             break;
         case Date:
@@ -176,6 +179,22 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    TableViewDataSourceSection* secao = (TableViewDataSourceSection*)[self.dataSource objectAtIndex:indexPath.section];
+    TableViewDataSourceRow *item = (TableViewDataSourceRow*)[secao.rows objectAtIndex:indexPath.row];
+
+    NSString *cellText = item.detailText;
+    if (cellText && (![cellText isEqualToString:@""]))
+    {
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+        CGSize constraintSize = CGSizeMake(140.0f, MAXFLOAT);
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        return labelSize.height + 20;
+    }
+    else
+        return 50;
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if(section == ([self.dataSource count]-1)){
@@ -226,7 +245,18 @@
     {
         ((PacientesInternadosViewController*)segue.destinationViewController).filtro = self.filtroPacientesInternados;
     }else if ([segue.identifier isEqualToString:@"Lista Especialidades"]){
-        ((ItemsViewController*)segue.destinationViewController).operacao = self.operacao;
+        ItemsViewController* itensViewController =  ((ItemsViewController*)segue.destinationViewController);
+        itensViewController.operacao = self.operacao;
+        if([self.operacao isEqualToString: @"CarregarEspecialidades"]){
+            itensViewController.title = @"Especialidades";
+            itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoEspecialidade;
+        } else if([self.operacao isEqualToString: @"ListarUnidadesAtendidasEnfermagemBasica"]){
+            itensViewController.title =  @"Unidades";
+            itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoUnidadeOrganizacional;
+        } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
+            itensViewController.title =  @"Médicos";
+            itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoMedico;
+        }
     }
 }
 

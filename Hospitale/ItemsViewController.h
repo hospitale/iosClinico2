@@ -12,4 +12,6 @@
 @property (nonatomic,strong) NSMutableArray* data;
 @property (nonatomic,strong) NSArray* allData;
 @property (nonatomic,weak) NSString* operacao;
+@property (nonatomic,strong) NSString* titulo;
+@property (nonatomic) int valorSelecionado;
 @end

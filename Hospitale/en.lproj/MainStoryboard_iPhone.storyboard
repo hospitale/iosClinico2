@@ -69,13 +69,19 @@
                             <outlet property="delegate" destination="L1W-K0-2H9" id="b5b-Eg-XTj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ta5-Kg-B8q"/>
+                    <navigationItem key="navigationItem" id="ta5-Kg-B8q">
+                        <barButtonItem key="rightBarButtonItem" title="Limpar Filtro" id="Ug7-IE-DSk">
+                            <connections>
+                                <action selector="limparFiltro:" destination="L1W-K0-2H9" id="ivE-3A-njL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xil-Ji-FDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950" y="-687"/>
         </scene>
-        <!--Pacientes Internados View Controller-->
+        <!--Pacientes Internados View Controller - Pacientes-->
         <scene sceneID="coa-9g-WsP">
             <objects>
                 <tableViewController id="BpX-5Y-CJi" customClass="PacientesInternadosViewController" sceneMemberID="viewController">
@@ -88,7 +94,7 @@
                             <outlet property="delegate" destination="BpX-5Y-CJi" id="G7e-hS-UMv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gEp-aj-luL"/>
+                    <navigationItem key="navigationItem" title="Pacientes" id="gEp-aj-luL"/>
                     <connections>
                         <segue destination="u8n-pJ-Jgs" kind="push" identifier="Detalhe Paciente" id="kV9-pJ-m6s"/>
                     </connections>
@@ -97,7 +103,7 @@
             </objects>
             <point key="canvasLocation" x="440" y="737"/>
         </scene>
-        <!--Detalhe Paciente Controller-->
+        <!--Detalhe Paciente Controller - Paciente-->
         <scene sceneID="lIv-1X-Lu2">
             <objects>
                 <tableViewController id="u8n-pJ-Jgs" customClass="DetalhePacienteController" sceneMemberID="viewController">
@@ -111,7 +117,7 @@
                             <outlet property="delegate" destination="u8n-pJ-Jgs" id="HfS-8Y-Vv0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UOp-66-vW1"/>
+                    <navigationItem key="navigationItem" title="Paciente" id="UOp-66-vW1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTa-f2-G8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -244,6 +250,35 @@
     <resources>
         <image name="NavBarIconLauncher.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="DetalhePacienteController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetalhePacienteController.h"/>
+        </class>
+        <class className="FiltroPacientesInternadosController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FiltroPacientesInternadosController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnMenu_Pressed:"/>
+            </relationships>
+        </class>
+        <class className="IIViewDeckController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
+        </class>
+        <class className="InitialViewController" superclassName="IIViewDeckController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
+        </class>
+        <class className="ItemsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemsViewController.h"/>
+        </class>
+        <class className="LeftViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeftViewController.h"/>
+        </class>
+        <class className="LoginController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginController.h"/>
+        </class>
+        <class className="PacientesInternadosViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PacientesInternadosViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
