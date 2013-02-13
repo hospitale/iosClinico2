@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface FiltroPacientesInterdados : NSObject
 @property (nonatomic) int codigoEspecialidade;
 @property (nonatomic,strong) NSString* nomeEspecialidade;

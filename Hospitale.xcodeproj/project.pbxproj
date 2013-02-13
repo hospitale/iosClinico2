@@ -42,8 +42,8 @@
 		880AE58516C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57716C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png */; };
 		880AE58616C5874B006EF175 /* FBMenuSectionHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57816C5874B006EF175 /* FBMenuSectionHeaderBackground.png */; };
 		880AE58716C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE57916C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png */; };
-		880AE58A16C58BF1006EF175 /* ItemFiltroPacientesInternados.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */; };
-		880AE58D16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */; };
+		880AE58A16C58BF1006EF175 /* TableViewDataSourceRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58916C58BF1006EF175 /* TableViewDataSourceRow.m */; };
+		880AE58D16C58FC1006EF175 /* TableViewDataSourceSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 880AE58C16C58FC1006EF175 /* TableViewDataSourceSection.m */; };
 		882F054D16BBE67E00FDCD2A /* TextEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 882F054C16BBE67E00FDCD2A /* TextEditCell.xib */; };
 		882F055016BBE72500FDCD2A /* TextEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F054F16BBE72500FDCD2A /* TextEditCell.m */; };
 		882F055716BC23DE00FDCD2A /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F055616BC23DE00FDCD2A /* NSArray+Categories.m */; };
@@ -65,8 +65,6 @@
 		8BDE4C9116B045CE002E7F4A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C9016B045CE002E7F4A /* SenTestingKit.framework */; };
 		8BDE4C9216B045CE002E7F4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6916B045CE002E7F4A /* UIKit.framework */; };
 		8BDE4C9316B045CE002E7F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDE4C6B16B045CE002E7F4A /* Foundation.framework */; };
-		8BDE4C9B16B045CE002E7F4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BDE4C9916B045CE002E7F4A /* InfoPlist.strings */; };
-		8BDE4C9E16B045CE002E7F4A /* HospitaleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE4C9D16B045CE002E7F4A /* HospitaleTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,10 +124,10 @@
 		880AE57716C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuSectionHeaderArrowSelected@2x.png"; sourceTree = "<group>"; };
 		880AE57816C5874B006EF175 /* FBMenuSectionHeaderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuSectionHeaderBackground.png; sourceTree = "<group>"; };
 		880AE57916C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuSectionHeaderBackground@2x.png"; sourceTree = "<group>"; };
-		880AE58816C58BF1006EF175 /* ItemFiltroPacientesInternados.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemFiltroPacientesInternados.h; sourceTree = "<group>"; };
-		880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemFiltroPacientesInternados.m; sourceTree = "<group>"; };
-		880AE58B16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecaoItemFiltroPacientesInternados.h; sourceTree = "<group>"; };
-		880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecaoItemFiltroPacientesInternados.m; sourceTree = "<group>"; };
+		880AE58816C58BF1006EF175 /* TableViewDataSourceRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSourceRow.h; sourceTree = "<group>"; };
+		880AE58916C58BF1006EF175 /* TableViewDataSourceRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSourceRow.m; sourceTree = "<group>"; };
+		880AE58B16C58FC1006EF175 /* TableViewDataSourceSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSourceSection.h; sourceTree = "<group>"; };
+		880AE58C16C58FC1006EF175 /* TableViewDataSourceSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSourceSection.m; sourceTree = "<group>"; };
 		882F054C16BBE67E00FDCD2A /* TextEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditCell.xib; sourceTree = "<group>"; };
 		882F054E16BBE72500FDCD2A /* TextEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditCell.h; sourceTree = "<group>"; };
 		882F054F16BBE72500FDCD2A /* TextEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditCell.m; sourceTree = "<group>"; };
@@ -160,10 +158,6 @@
 		8BDE4C8516B045CE002E7F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8BDE4C8F16B045CE002E7F4A /* HospitaleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitaleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE4C9016B045CE002E7F4A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		8BDE4C9816B045CE002E7F4A /* HospitaleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HospitaleTests-Info.plist"; sourceTree = "<group>"; };
-		8BDE4C9A16B045CE002E7F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8BDE4C9C16B045CE002E7F4A /* HospitaleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HospitaleTests.h; sourceTree = "<group>"; };
-		8BDE4C9D16B045CE002E7F4A /* HospitaleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HospitaleTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,10 +276,10 @@
 				88A6E86C16BAABAA00A31E7E /* FiltroPacientesInterdados.m */,
 				4A50937416C1332600F29497 /* PacienteInternado.h */,
 				4A50937516C1332600F29497 /* PacienteInternado.m */,
-				880AE58816C58BF1006EF175 /* ItemFiltroPacientesInternados.h */,
-				880AE58916C58BF1006EF175 /* ItemFiltroPacientesInternados.m */,
-				880AE58B16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.h */,
-				880AE58C16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m */,
+				880AE58816C58BF1006EF175 /* TableViewDataSourceRow.h */,
+				880AE58916C58BF1006EF175 /* TableViewDataSourceRow.m */,
+				880AE58B16C58FC1006EF175 /* TableViewDataSourceSection.h */,
+				880AE58C16C58FC1006EF175 /* TableViewDataSourceSection.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -294,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				8BDE4C6F16B045CE002E7F4A /* Hospitale */,
-				8BDE4C9616B045CE002E7F4A /* HospitaleTests */,
 				8BDE4C6816B045CE002E7F4A /* Frameworks */,
 				8BDE4C6616B045CE002E7F4A /* Products */,
 			);
@@ -370,25 +363,6 @@
 				8BDE4C7B16B045CE002E7F4A /* Default.png */,
 				8BDE4C7D16B045CE002E7F4A /* Default@2x.png */,
 				8BDE4C7F16B045CE002E7F4A /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8BDE4C9616B045CE002E7F4A /* HospitaleTests */ = {
-			isa = PBXGroup;
-			children = (
-				8BDE4C9C16B045CE002E7F4A /* HospitaleTests.h */,
-				8BDE4C9D16B045CE002E7F4A /* HospitaleTests.m */,
-				8BDE4C9716B045CE002E7F4A /* Supporting Files */,
-			);
-			path = HospitaleTests;
-			sourceTree = "<group>";
-		};
-		8BDE4C9716B045CE002E7F4A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8BDE4C9816B045CE002E7F4A /* HospitaleTests-Info.plist */,
-				8BDE4C9916B045CE002E7F4A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -501,7 +475,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDE4C9B16B045CE002E7F4A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,8 +520,8 @@
 				4A81117B16C41D24003CF0A7 /* IIWrapController.m in Sources */,
 				4A81119C16C429E2003CF0A7 /* InitialViewController.m in Sources */,
 				4A81119F16C4362D003CF0A7 /* LeftViewController.m in Sources */,
-				880AE58A16C58BF1006EF175 /* ItemFiltroPacientesInternados.m in Sources */,
-				880AE58D16C58FC1006EF175 /* SecaoItemFiltroPacientesInternados.m in Sources */,
+				880AE58A16C58BF1006EF175 /* TableViewDataSourceRow.m in Sources */,
+				880AE58D16C58FC1006EF175 /* TableViewDataSourceSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +529,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDE4C9E16B045CE002E7F4A /* HospitaleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,14 +565,6 @@
 				8BDE4C8516B045CE002E7F4A /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		8BDE4C9916B045CE002E7F4A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BDE4C9A16B045CE002E7F4A /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

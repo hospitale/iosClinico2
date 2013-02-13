@@ -179,6 +179,8 @@
                    {
                        self.idUsuario = [jsonData integerValue];
                        [self performSegueWithIdentifier:@"Segue Itens" sender: self];
+                       self.textUsername.text = @"";
+                       self.textPassword.text = @"";
                    }
                    else
                    {

@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 AeC. All rights reserved.
 //
 
-#import "ItemFiltroPacientesInternados.h"
+#import "TableViewDataSourceRow.h"
 
-@implementation ItemFiltroPacientesInternados
+@implementation TableViewDataSourceRow
 @synthesize text;
 @synthesize detailText;
-@synthesize valueChanged;
+@synthesize action;
 @synthesize stereotype;
 @synthesize indexPath;
-@synthesize operacao;
+@synthesize operation;
+@synthesize image;
+@synthesize selected;
 @end

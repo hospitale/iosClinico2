@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+enum Stereotype { Search = 1, Date = 2 };
 
-@interface ItemFiltroPacientesInternados : NSObject
+@interface TableViewDataSourceRow : NSObject
 @property (nonatomic,strong) NSString* text;
 @property (nonatomic,weak) id detailText;
-@property (nonatomic) SEL* valueChanged;
-@property (nonatomic,strong) NSString* stereotype;
+@property (nonatomic,strong) UIImage* image;
+@property (nonatomic) SEL action;
+@property (nonatomic) enum Stereotype stereotype;
 @property (nonatomic,strong) NSIndexPath* indexPath;
-@property (nonatomic,strong) NSString* operacao;
+@property (nonatomic,strong) NSString* operation;
+@property (nonatomic) BOOL selected;
 @end
