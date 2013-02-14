@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FiltroPacientesInterdados.h"
 
-@interface FiltroPacientesInternadosController : UITableViewController <UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate>
+@interface FiltroPacientesInternadosController : UITableViewController <UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate>{
+    UITextField *currentEditingField;
+}
 @property (nonatomic,strong) FiltroPacientesInterdados* filtroPacientesInternados;
+
 
 @end
 

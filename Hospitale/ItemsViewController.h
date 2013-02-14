@@ -14,4 +14,7 @@
 @property (nonatomic,weak) NSString* operacao;
 @property (nonatomic,strong) NSString* titulo;
 @property (nonatomic) int valorSelecionado;
+@property (nonatomic) BOOL temPrevixo;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end

@@ -14,6 +14,7 @@
 #import "IIViewDeckController.h"
 #import "TableViewDataSourceRow.h"
 #import "TableViewDataSourceSection.h"
+#import "CustomDatePicker.h"
 
 @interface FiltroPacientesInternadosController ()
 @property (nonatomic,strong) UIButton* btnRelatorio;
@@ -26,6 +27,7 @@
 @synthesize btnRelatorio = _btnRelatorio;
 @synthesize operacao = _operacao;
 @synthesize dataSource = _dataSource;
+
 
 -(FiltroPacientesInterdados *)filtroPacientesInternados{
     if(!_filtroPacientesInternados)
@@ -53,8 +55,14 @@
     medico.stereotype = Search;
     medico.operation = @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto";
     
+    TableViewDataSourceRow* paciente = [[TableViewDataSourceRow alloc] init];
+    paciente.text = @"Paciente";
+    paciente.detailText = self.filtroPacientesInternados.nomePaciente;
+    paciente.stereotype = Search;
+    paciente.operation = @"ListarPessoasPossuemAtendimentoEmAberto";
+    
     TableViewDataSourceSection* primeira = [[TableViewDataSourceSection alloc] init];
-    primeira.rows = [NSArray arrayWithObjects:especialidade,unidade,medico, nil];
+    primeira.rows = [NSArray arrayWithObjects:especialidade,unidade,medico,paciente, nil];
     
     TableViewDataSourceRow* dataInicial = [[TableViewDataSourceRow alloc] init];
     dataInicial.text = @"Data Inicial";
@@ -97,6 +105,7 @@
     
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setToolbarHidden:YES];
     [self.navigationItem setHidesBackButton:YES];
     [self montaDataSource];
     [self.tableView reloadData];
@@ -164,14 +173,20 @@
             textEditCell.textLabel2.text = item.text;
             [textEditCell.textLabel2 sizeToFit];
             UITextField* textEdit = textEditCell.textEdit2;
+            textEdit.delegate = self;
             textEdit.text = [dateFormat stringFromDate: item.detailText];
             
-            UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-            datePicker.datePickerMode = UIDatePickerModeDate;
-            [datePicker addTarget:self action:item.action forControlEvents:UIControlEventValueChanged];
-            datePicker.tag = indexPath.row;
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomDatePicker" owner:self options:nil];
+            CustomDatePicker* datePicker = (CustomDatePicker*)[nib objectAtIndex:0];
+            datePicker.action = item.action;
+//            [datePicker.datePicker addTarget:self action:item.action forControlEvents:UIControlEventValueChanged];
+            [datePicker.btnOk setTarget:self];
+            [datePicker.btnOk setAction:@selector(btnOk:)];
+            [datePicker.btnCancelar setTarget:self];
+            [datePicker.btnCancelar setAction:@selector(btnCancelar:)];
             
             textEdit.inputView = datePicker;
+            
 
             break;
     }
@@ -179,12 +194,40 @@
     return cell;
 }
 
+
+-(void)btnCancelar:(UIBarButtonItem*)sender{
+    [self resignFirstResponder];
+    [self.tableView reloadData];
+}
+
+-(void)btnOk:(UIBarButtonItem*)sender{
+    CustomDatePicker* datePicker = (CustomDatePicker*)currentEditingField.inputView;
+    [self performSelector:datePicker.action withObject:datePicker.datePicker];
+    [self resignFirstResponder];
+    [self montaDataSource];
+    [self.tableView reloadData];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    currentEditingField = textField;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TableViewDataSourceSection* secao = (TableViewDataSourceSection*)[self.dataSource objectAtIndex:indexPath.section];
     TableViewDataSourceRow *item = (TableViewDataSourceRow*)[secao.rows objectAtIndex:indexPath.row];
+    
+    NSString *cellText;
+    if([item.detailText isKindOfClass:[NSString class]])
+        cellText = item.detailText;
+    else
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
 
-    NSString *cellText = item.detailText;
+        cellText = [dateFormat stringFromDate: item.detailText];
+    }
+
     if (cellText && (![cellText isEqualToString:@""]))
     {
         UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
@@ -254,22 +297,23 @@
             itensViewController.title =  @"Unidades";
             itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoUnidadeOrganizacional;
         } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
+            itensViewController.temPrevixo = true;
             itensViewController.title =  @"Médicos";
             itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoMedico;
+        } else if ([self.operacao isEqualToString: @"ListarPessoasPossuemAtendimentoEmAberto"]){
+            itensViewController.title =  @"Pacientes";
+            itensViewController.temPrevixo = true;
+            itensViewController.valorSelecionado = self.filtroPacientesInternados.codigoPaciente;
         }
     }
 }
 
 -(void)dtpDataInicial_ValueChanged:(UIDatePicker*)sender{
     self.filtroPacientesInternados.dataInicial = sender.date;
-    [self montaDataSource];
-    [self.tableView reloadData];
 }
 
 -(void)dtpDataFinal_ValueChanged:(UIDatePicker*)sender{
     self.filtroPacientesInternados.dataFinal = sender.date;
-    [self montaDataSource];
-    [self.tableView reloadData];
 }
 
 - (void)btnRelatorio_TouchUpInside:(UIButton*)sender {
@@ -278,6 +322,12 @@
 
 - (IBAction)btnMenu_Pressed:(id)sender {
     [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
+- (IBAction)limpar:(id)sender {
+    self.filtroPacientesInternados = [[FiltroPacientesInterdados alloc] init];
+    [self montaDataSource];
+    [self.tableView reloadData];
 }
 
 

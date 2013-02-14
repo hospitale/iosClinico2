@@ -26,6 +26,8 @@
 		4A8111A616C43DD9003CF0A7 /* FBBookmarkLogout.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8111A416C43DD9003CF0A7 /* FBBookmarkLogout.png */; };
 		4A8111A716C43DD9003CF0A7 /* FBBookmarkLogout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8111A516C43DD9003CF0A7 /* FBBookmarkLogout@2x.png */; };
 		4AAD209616C28D01003B2C75 /* URLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD209516C28D01003B2C75 /* URLUtil.m */; };
+		4AB579CA16CD596600881487 /* CustomDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB579C916CD596600881487 /* CustomDatePicker.xib */; };
+		4AB579CD16CD5A5800881487 /* CustomDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB579CC16CD5A5800881487 /* CustomDatePicker.m */; };
 		880AE56A16C58625006EF175 /* FBMenuBadgeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */; };
 		880AE56B16C58625006EF175 /* FBMenuBadgeBackground%402x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */; };
 		880AE57A16C5874B006EF175 /* FBMenuCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */; };
@@ -108,6 +110,9 @@
 		4A8111A516C43DD9003CF0A7 /* FBBookmarkLogout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBBookmarkLogout@2x.png"; sourceTree = "<group>"; };
 		4AAD209416C28D01003B2C75 /* URLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLUtil.h; sourceTree = "<group>"; };
 		4AAD209516C28D01003B2C75 /* URLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLUtil.m; sourceTree = "<group>"; };
+		4AB579C916CD596600881487 /* CustomDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDatePicker.xib; sourceTree = "<group>"; };
+		4AB579CB16CD5A5800881487 /* CustomDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDatePicker.h; sourceTree = "<group>"; };
+		4AB579CC16CD5A5800881487 /* CustomDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDatePicker.m; sourceTree = "<group>"; };
 		880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuBadgeBackground.png; sourceTree = "<group>"; };
 		880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuBadgeBackground%402x.png"; sourceTree = "<group>"; };
 		880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuCellBackground.png; sourceTree = "<group>"; };
@@ -203,6 +208,9 @@
 				882F054C16BBE67E00FDCD2A /* TextEditCell.xib */,
 				882F054E16BBE72500FDCD2A /* TextEditCell.h */,
 				882F054F16BBE72500FDCD2A /* TextEditCell.m */,
+				4AB579C916CD596600881487 /* CustomDatePicker.xib */,
+				4AB579CB16CD5A5800881487 /* CustomDatePicker.h */,
+				4AB579CC16CD5A5800881487 /* CustomDatePicker.m */,
 			);
 			name = CustomControls;
 			sourceTree = "<group>";
@@ -468,6 +476,7 @@
 				880AE58516C5874B006EF175 /* FBMenuSectionHeaderArrowSelected@2x.png in Resources */,
 				880AE58616C5874B006EF175 /* FBMenuSectionHeaderBackground.png in Resources */,
 				880AE58716C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png in Resources */,
+				4AB579CA16CD596600881487 /* CustomDatePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +531,7 @@
 				4A81119F16C4362D003CF0A7 /* LeftViewController.m in Sources */,
 				880AE58A16C58BF1006EF175 /* TableViewDataSourceRow.m in Sources */,
 				880AE58D16C58FC1006EF175 /* TableViewDataSourceSection.m in Sources */,
+				4AB579CD16CD5A5800881487 /* CustomDatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

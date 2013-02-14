@@ -22,6 +22,7 @@
 @synthesize titulo = _titulo;
 @synthesize valorSelecionado = _valorSelecionado;
 @synthesize selectedIndexPath = _selectedIndexPath;
+@synthesize temPrevixo = _temPrevixo;
 
 bool inited = NO;
 int keyboardHeight;
@@ -37,21 +38,30 @@ int keyboardHeight;
 
 
 -(void)setup{
-    
 
     if (!inited)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];        
     }
     
+    if(!self.temPrevixo)
+        [self requisitaDadosComConteudo:@""];
+    else{
+        self.searchBar.placeholder = @"Informe pelo menos 2 carateres.";
+        [self.searchBar becomeFirstResponder];
+    }
+    
+    inited = YES;
+}
+
+-(void)requisitaDadosComConteudo:(NSString*)conteudo{
     //Carrega as especialiades
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSString* url = [NSString stringWithFormat:@"%@clinico/enfermagem/testeClinico.svc/%@",[URLUtil getBackEndUrl],self.operacao];
     [AeCURLConnection post:url
-               withContent:@"" successBlock:^(NSData *data, id jsonData) {
+               withContent:conteudo successBlock:^(NSData *data, id jsonData) {
                    
                    //NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -63,7 +73,7 @@ int keyboardHeight;
                            
                            /* update UI on Main Thread */
                            [self.tableView reloadData];
-                                   [self performSelector:@selector(selectRowAtIndexPath:) withObject:self.selectedIndexPath afterDelay:0.0];
+                           [self performSelector:@selector(selectRowAtIndexPath:) withObject:self.selectedIndexPath afterDelay:0.0];
                        });
                    });
                } errorBlock:^(NSError *error) {
@@ -71,10 +81,7 @@ int keyboardHeight;
                } completeBlock:^{
                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                }];
-    
-    inited = YES;
 }
-
 -(void)keyboardShown:(NSNotification*) notification{
     CGRect keyboardFrame;
     [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
@@ -106,6 +113,9 @@ int keyboardHeight;
     } else if ([self.operacao isEqualToString: @"ListarMedicosUltimaPrescricao_PacientesAtendimentoEmAberto"]){
         prevController.filtroPacientesInternados.nomeMedico = nome;
         prevController.filtroPacientesInternados.codigoMedico = valor;
+    } else if ([self.operacao isEqualToString: @"ListarPessoasPossuemAtendimentoEmAberto"]){
+        prevController.filtroPacientesInternados.nomePaciente = nome;
+        prevController.filtroPacientesInternados.codigoPaciente = valor;
     }
     
     [navController popViewControllerAnimated:TRUE];
@@ -194,28 +204,36 @@ int keyboardHeight;
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //Filtra registros
-        if([searchText length] == 0){
-            [self.data removeAllObjects];
-            [self.data addObjectsFromArray: self.allData];
-        }else{
-            [self.data removeAllObjects];
-            for(int i = 0; i< [self.allData count];i++){
-                NSString* item = [[self.allData objectAtIndex: i] objectForKey:@"Valor"];
-                NSRange range = [item rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                if(range.location != NSNotFound){
-                    [self.data addObject:[self.allData objectAtIndex:i]];
+    if(!self.temPrevixo)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            //Filtra registros
+            if([searchText length] == 0){
+                [self.data removeAllObjects];
+                [self.data addObjectsFromArray: self.allData];
+            }else{
+                [self.data removeAllObjects];
+                for(int i = 0; i< [self.allData count];i++){
+                    NSString* item = [[self.allData objectAtIndex: i] objectForKey:@"Valor"];
+                    NSRange range = [item rangeOfString:searchText options:NSCaseInsensitiveSearch];
+                    if(range.location != NSNotFound){
+                        [self.data addObject:[self.allData objectAtIndex:i]];
+                    }
                 }
             }
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.tableView reloadData];
+            });
         });
-    });
+    }else
+    {
+        if([searchText length] >= 2){
+            [self requisitaDadosComConteudo:[NSString stringWithFormat: @"{\"prefixText\":\"%@\"}", searchText]];
+        }
+    }
 
     
 }

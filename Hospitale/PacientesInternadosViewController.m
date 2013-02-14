@@ -38,10 +38,11 @@ BOOL loaded = NO;
         //Carrega as especialiades
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 //        NSLog(@"Filtro: IdEspecialidade = %d",self.filtro.codigoEspecialidade);
-        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdPessoa\":\"%d\",\"IdUnidadeOrganizacional\":\"%d\"}",
+        NSString* content = [NSString stringWithFormat:@"{\"dto\":{\"IdEspecialidade\":\"%d\",\"IdMedico\":\"%d\",\"IdUnidadeOrganizacional\":\"%d\",\"IdPessoa\":\"%d\"}",
                              self.filtro.codigoEspecialidade ? self.filtro.codigoEspecialidade : -1,
                              self.filtro.codigoMedico ? self.filtro.codigoMedico : -1,
-                             self.filtro.codigoUnidadeOrganizacional ? self.filtro.codigoUnidadeOrganizacional : -1];
+                             self.filtro.codigoUnidadeOrganizacional ? self.filtro.codigoUnidadeOrganizacional : -1,
+                             self.filtro.codigoPaciente ? self.filtro.codigoPaciente : -1];
         NSString* url = [NSString stringWithFormat:@"%@clinico/enfermagem/testeClinico.svc/CarregarPacientesInternados",[URLUtil getBackEndUrl]];
    
         [AeCURLConnection post:url withContent:content successBlock:^(NSData *data, id jsonData) {

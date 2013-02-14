@@ -76,6 +76,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="GfY-ke-fGP" id="iJG-BS-Fdg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xil-Ji-FDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,6 +168,11 @@
                                 <action selector="btnMenu_Pressed:" destination="7yv-eY-cji" id="WQa-Ud-RRf"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Limpar" id="0n7-Ij-a5h">
+                            <connections>
+                                <action selector="limpar:" destination="7yv-eY-cji" id="ejM-Ie-TWJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="L1W-K0-2H9" kind="push" identifier="Lista Especialidades" id="Dk8-fd-2wE"/>
@@ -186,7 +194,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="WQe-jU-roD">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -258,6 +266,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FiltroPacientesInternadosController.h"/>
             <relationships>
                 <relationship kind="action" name="btnMenu_Pressed:"/>
+                <relationship kind="action" name="limpar:"/>
             </relationships>
         </class>
         <class className="IIViewDeckController" superclassName="UIViewController">
@@ -268,6 +277,10 @@
         </class>
         <class className="ItemsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="limparFiltro:"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="LeftViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeftViewController.h"/>
