@@ -264,10 +264,6 @@
         </class>
         <class className="FiltroPacientesInternadosController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FiltroPacientesInternadosController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnMenu_Pressed:"/>
-                <relationship kind="action" name="limpar:"/>
-            </relationships>
         </class>
         <class className="IIViewDeckController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
@@ -278,7 +274,6 @@
         <class className="ItemsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="limparFiltro:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>

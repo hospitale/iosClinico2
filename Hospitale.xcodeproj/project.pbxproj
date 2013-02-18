@@ -28,6 +28,11 @@
 		4AAD209616C28D01003B2C75 /* URLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD209516C28D01003B2C75 /* URLUtil.m */; };
 		4AB579CA16CD596600881487 /* CustomDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB579C916CD596600881487 /* CustomDatePicker.xib */; };
 		4AB579CD16CD5A5800881487 /* CustomDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB579CC16CD5A5800881487 /* CustomDatePicker.m */; };
+		4ACC267716D2629F00D22656 /* hospitaleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC267616D2629F00D22656 /* hospitaleIcon.png */; };
+		4ACC267A16D262E700D22656 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC267916D262E700D22656 /* Default.png */; };
+		4ACC267C16D262FF00D22656 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC267B16D262FF00D22656 /* Default@2x.png */; };
+		4ACC267E16D2630B00D22656 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC267D16D2630B00D22656 /* Default-568h@2x.png */; };
+		4ACC268016D263FE00D22656 /* hospitaleIcon@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC267F16D263FE00D22656 /* hospitaleIcon@x2.png */; };
 		880AE56A16C58625006EF175 /* FBMenuBadgeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */; };
 		880AE56B16C58625006EF175 /* FBMenuBadgeBackground%402x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */; };
 		880AE57A16C5874B006EF175 /* FBMenuCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */; };
@@ -113,6 +118,11 @@
 		4AB579C916CD596600881487 /* CustomDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDatePicker.xib; sourceTree = "<group>"; };
 		4AB579CB16CD5A5800881487 /* CustomDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDatePicker.h; sourceTree = "<group>"; };
 		4AB579CC16CD5A5800881487 /* CustomDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDatePicker.m; sourceTree = "<group>"; };
+		4ACC267616D2629F00D22656 /* hospitaleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hospitaleIcon.png; path = ../hospitaleIcon.png; sourceTree = "<group>"; };
+		4ACC267916D262E700D22656 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		4ACC267B16D262FF00D22656 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		4ACC267D16D2630B00D22656 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		4ACC267F16D263FE00D22656 /* hospitaleIcon@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hospitaleIcon@x2.png"; path = "../hospitaleIcon@x2.png"; sourceTree = "<group>"; };
 		880AE56816C58625006EF175 /* FBMenuBadgeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuBadgeBackground.png; sourceTree = "<group>"; };
 		880AE56916C58625006EF175 /* FBMenuBadgeBackground%402x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBMenuBadgeBackground%402x.png"; sourceTree = "<group>"; };
 		880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBMenuCellBackground.png; sourceTree = "<group>"; };
@@ -342,6 +352,11 @@
 		8BDE4C7016B045CE002E7F4A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4ACC267F16D263FE00D22656 /* hospitaleIcon@x2.png */,
+				4ACC267D16D2630B00D22656 /* Default-568h@2x.png */,
+				4ACC267B16D262FF00D22656 /* Default@2x.png */,
+				4ACC267916D262E700D22656 /* Default.png */,
+				4ACC267616D2629F00D22656 /* hospitaleIcon.png */,
 				880AE56C16C5874B006EF175 /* FBMenuCellBackground.png */,
 				880AE56D16C5874B006EF175 /* FBMenuCellBackground@2x.png */,
 				880AE56E16C5874B006EF175 /* FBMenuCellBackgroundSelected.png */,
@@ -477,6 +492,11 @@
 				880AE58616C5874B006EF175 /* FBMenuSectionHeaderBackground.png in Resources */,
 				880AE58716C5874B006EF175 /* FBMenuSectionHeaderBackground@2x.png in Resources */,
 				4AB579CA16CD596600881487 /* CustomDatePicker.xib in Resources */,
+				4ACC267716D2629F00D22656 /* hospitaleIcon.png in Resources */,
+				4ACC267A16D262E700D22656 /* Default.png in Resources */,
+				4ACC267C16D262FF00D22656 /* Default@2x.png in Resources */,
+				4ACC267E16D2630B00D22656 /* Default-568h@2x.png in Resources */,
+				4ACC268016D263FE00D22656 /* hospitaleIcon@x2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
